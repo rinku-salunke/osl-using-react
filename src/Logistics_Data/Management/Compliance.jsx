@@ -383,29 +383,79 @@ function Compliance() {
         <div className="flex gap-2 px-4 mt-2 h-auto">
           {/* Left column */}
           <div className="bg-white border border-gray-300 p-4 rounded-md flex-1 ms-4">
-         
-         <div class="flex justify-between border-b border-gray-300 px-2 -mx-4 py-2">
-          <span class="font-bold">Recent Documents</span>
-          <span class="text-dark-navy-blue">View All</span>
-         </div>
+            {/* Header */}
+            <div className="flex justify-between border-b border-gray-300 px-2 -mx-4 py-2">
+              <span className="font-bold">Recent Documents</span>
+              <span className="text-dark-navy-blue cursor-pointer hover:underline text-sm">View All</span>
+            </div>
 
+            {/* Document List */}
+            <div className="flex flex-col gap-3 mt-4">
+              {/* 1. Environmental Permit */}
+              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="font-medium text-gray-800">Environmental_Permit_2024.pdf</span>
+                    <p className="text-xs text-gray-400 mt-0.5">Uploaded 2 hours ago • Environmental</p>
+                  </div>
+                  <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-0.5 rounded-full">Approved</span>
+                </div>
+                <p className="text-xs text-gray-500 mt-1.5">Valid until Dec 2024</p>
+              </div>
 
-         <div class="flex flex-col gap-2 mt-4">
-          <div class="border border-gray-300 rounded-md bg-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore excepturi laboriosam, facilis iusto quo autem veritatis quisquam repellat similique eos praesentium, sit, blanditiis harum rerum quibusdam impedit esse. Vitae, dolores.</div>
-          <div class="border border-gray-300 rounded-md bg-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto corporis, ad harum atque animi eos aspernatur sit nesciunt perferendis. Nulla, commodi esse doloremque earum architecto voluptas! Inventore, quisquam. Iste, reiciendis.</div>
-          <div class="border border-gray-300 rounded-md bg-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto corporis, ad harum atque animi eos aspernatur sit nesciunt perferendis. Nulla, commodi esse doloremque earum architecto voluptas! Inventore, quisquam. Iste, reiciendis.</div>
-          <div class="border border-gray-300 rounded-md bg-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto corporis, ad harum atque animi eos aspernatur sit nesciunt perferendis. Nulla, commodi esse doloremque earum architecto voluptas! Inventore, quisquam. Iste, reiciendis.</div>
-          <div class="border border-gray-300 rounded-md bg-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto corporis, ad harum atque animi eos aspernatur sit nesciunt perferendis. Nulla, commodi esse doloremque earum architecto voluptas! Inventore, quisquam. Iste, reiciendis.</div>
-         </div>
+              {/* 2. ISO Certificate */}
+              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="font-medium text-gray-800">ISO_9001_Certificate.jpg</span>
+                    <p className="text-xs text-gray-400 mt-0.5">Uploaded yesterday • Quality Standards</p>
+                  </div>
+                  <span className="text-xs font-medium text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded-full">Under Review</span>
+                </div>
+                <p className="text-xs text-gray-500 mt-1.5">Pending verification</p>
+              </div>
 
+              {/* 3. Fire Safety Certificate */}
+              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="font-medium text-gray-800">Fire_Safety_Certificate.pdf</span>
+                    <p className="text-xs text-gray-400 mt-0.5">Uploaded 3 days ago • Safety & Security</p>
+                  </div>
+                  <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full">Expired</span>
+                </div>
+                <p className="text-xs text-red-500 mt-1.5">⚠️ Renewal required</p>
+              </div>
 
+              {/* 4. Business License */}
+              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="font-medium text-gray-800">Business_License_Renewal.pdf</span>
+                    <p className="text-xs text-gray-400 mt-0.5">Uploaded last week • Legal & Regulatory</p>
+                  </div>
+                  <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">Current</span>
+                </div>
+                <p className="text-xs text-gray-500 mt-1.5">Valid until Jun 2025</p>
+              </div>
 
-
+              {/* 5. Insurance Policy */}
+              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="font-medium text-gray-800">Insurance_Policy_Commercial.pdf</span>
+                    <p className="text-xs text-gray-400 mt-0.5">Uploaded 2 weeks ago • Insurance</p>
+                  </div>
+                  <span className="text-xs font-medium text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full">Expiring Soon</span>
+                </div>
+                <p className="text-xs text-orange-500 mt-1.5">⏳ Expires in 15 days</p>
+              </div>
+            </div>
           </div>
 
           {/**Right Column */}
           <div className="bg-white border border-gray-300 p-4 rounded-md flex-1">
-            lorem
+           
           </div>
 
         </div>
