@@ -453,9 +453,92 @@ function Compliance() {
             </div>
           </div>
 
-          {/**Right Column */}
-          <div className="bg-white border border-gray-300 p-4 rounded-md flex-1">
-           
+          {/** Right Column - Audit History */}
+          <div className="bg-white p-4 rounded-md flex-1 border border-gray-300">
+            {/* Header */}
+            <div className="flex justify-between border-b border-gray-300 px-2 -mx-4 py-2">
+              <span className="font-bold text-gray-800">Audit History</span>
+              <span className="text-white border border-gray-300 rounded-md px-2 py-1 bg-dark-navy-blue text-sm font-medium">Schedule Audit</span>
+            </div>
+
+            {/* Audit List */}
+            <div className="flex flex-col gap-3 mt-4">
+              {/* 1. Environmental Compliance Audit */}
+              <div className="p-3 bg-white hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <span className="font-semibold text-gray-800 text-sm">Environmental Compliance Audit</span>
+                  <span className="text-xs font-medium ">Passed</span>
+                </div>
+                <p className="text-xs text-gray-400 mt-0.5">Completed on Jan 10, 2024</p>
+                <p className="text-xs text-gray-600 mt-1.5 leading-relaxed">
+                  Annual environmental compliance review covering waste management, emissions, and environmental permits.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs">
+                  <span className="text-gray-500">Score: <span className="font-semibold text-gray-700">94/100</span></span>
+                  <span className="text-gray-500">Auditor: <span className="text-gray-700">Green Compliance Inc.</span></span>
+                </div>
+                <button className="text-dark-navy-blue text-xs font-medium hover:underline mt-1.5 cursor-pointer">
+                  View Report →
+                </button>
+              </div>
+
+              {/* 2. Safety & Security Audit */}
+              <div className="p-3 bg-white hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <span className="font-semibold text-gray-800 text-sm">Safety & Security Audit</span>
+                  <span className="text-xs font-medium">Minor Issues</span>
+                </div>
+                <p className="text-xs text-gray-400 mt-0.5">Completed on Dec 15, 2023</p>
+                <p className="text-xs text-gray-600 mt-1.5 leading-relaxed">
+                  Comprehensive safety audit identified minor issues with fire safety equipment maintenance schedules.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs">
+                  <span className="text-gray-500">Score: <span className="font-semibold text-gray-700">87/100</span></span>
+                  <span className="text-gray-500">Auditor: <span className="text-gray-700">SafeGuard Audits</span></span>
+                </div>
+                <button className="text-dark-navy-blue text-xs font-medium hover:underline mt-1.5 cursor-pointer">
+                  View Report →
+                </button>
+              </div>
+
+              {/* 3. ISO 9001 Certification Review */}
+              <div className="p-3 bg-white hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <span className="font-semibold text-gray-800 text-sm">ISO 9001 Certification Review</span>
+                  <span className="text-xs font-medium">Scheduled</span>
+                </div>
+                <p className="text-xs text-gray-400 mt-0.5">Scheduled for Jan 25, 2024</p>
+                <p className="text-xs text-gray-600 mt-1.5 leading-relaxed">
+                  Annual ISO 9001 quality management system certification review and renewal process.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs">
+                  <span className="text-gray-500">Duration: <span className="text-gray-700">2 days</span></span>
+                  <span className="text-gray-500">Auditor: <span className="text-gray-700">ISO Cert Solutions</span></span>
+                </div>
+                <button className="text-dark-navy-blue text-xs font-medium hover:underline mt-1.5 cursor-pointer">
+                  Preparation Checklist →
+                </button>
+              </div>
+
+              {/* 4. Legal & Regulatory Compliance */}
+              <div className="p-3 bg-white hover:shadow-sm transition-shadow">
+                <div className="flex justify-between items-start">
+                  <span className="font-semibold text-gray-800 text-sm">Legal & Regulatory Compliance</span>
+                  <span className="text-xs font-medium">Passed</span>
+                </div>
+                <p className="text-xs text-gray-400 mt-0.5">Completed on Nov 20, 2023</p>
+                <p className="text-xs text-gray-600 mt-1.5 leading-relaxed">
+                  Quarterly review of business licenses, permits, and regulatory compliance requirements.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs">
+                  <span className="text-gray-500">Score: <span classNamse="font-semibold text-gray-700">98/100</span></span>
+                  <span className="text-gray-500">Auditor: <span className="text-gray-700">Legal Compliance Group</span></span>
+                </div>
+                <button className="text-dark-navy-blue text-xs font-medium hover:underline mt-1.5 cursor-pointer">
+                  View Report →
+                </button>
+              </div>
+            </div>
           </div>
 
         </div>
