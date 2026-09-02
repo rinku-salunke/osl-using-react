@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+    --color-dark-navy-blue: #000080;
+    --color-green: #22c55e;
+    --color-red: #ef4444;
+    --color-orange: #f97316;
+    --color-yellow-amber: #f59e0b;
+    --color-light-gray: #f3f4f6;
+    --color-white-fresh: #ffffff;
+    --color-halaki-rakhadi:#d1d5db;
+    --color-muted-icons:#6b7280;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
