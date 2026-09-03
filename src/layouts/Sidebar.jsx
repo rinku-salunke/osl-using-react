@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../ThemeContext';
-import { MdDashboard } from "react-icons/md";
 
 function Sidebar() {
     const { isDarkMode } = useTheme();
@@ -23,11 +22,10 @@ function Sidebar() {
                     <h3 className={`text-xs  tracking-wider px-3 mb-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>Main Menu</h3>
                     <ul>
                         <li><Link to="/dashboard" className={linkClasses}>Dashboard</Link></li>
-                        <li><Link to="/orders" className={linkClasses}>Orders</Link></li>
-                        <li><Link to="/warehouse" className={linkClasses}>Warehouse</Link></li>
-                        <li><Link to="/shipments" className={linkClasses}>Shipments</Link></li>
-                        <li><Link to="/clients" className={linkClasses}>Clients</Link></li>
-                        <li><Link to="/vehicles" className={linkClasses}>Vehicles</Link></li>
+                        <li><Link to="/orders" className={linkClasses}>Order & LR Management</Link></li>
+                        <li><Link to="/warehouse" className={linkClasses}>Warehouse Operations</Link></li>
+                        <li><Link to="/shipments" className={linkClasses}>Shipment & Delivery</Link></li>
+                        <li><Link to="/clients" className={linkClasses}>Client Portal</Link></li>
                     </ul>
                 </div>
 
@@ -36,9 +34,8 @@ function Sidebar() {
                     <h3 className={`text-xs  tracking-wider px-3 mb-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>Management</h3>
                     <ul>
                         <li><Link to="/administration" className={linkClasses}>Administration</Link></li>
-                        <li><Link to="/gate-pass" className={linkClasses}>Gate Pass</Link></li>
+                        <li><Link to="/gate-pass" className={linkClasses}>Vehicle & Gate Pass</Link></li>
                         <li><Link to="/compliance" className={linkClasses}>Compliance</Link></li>
-                        <li><Link to="/settings" className={linkClasses}>Settings</Link></li>
                     </ul>
                 </div>
 

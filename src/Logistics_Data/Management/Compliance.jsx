@@ -375,8 +375,6 @@ function Compliance() {
             </div>
 
 
-
-
           </div>
         </div>
 
@@ -392,7 +390,7 @@ function Compliance() {
             {/* Document List */}
             <div className="flex flex-col gap-3 mt-4">
               {/* 1. Environmental Permit */}
-              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-md bg-white p-3">
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="font-medium text-gray-800">Environmental_Permit_2024.pdf</span>
@@ -404,7 +402,7 @@ function Compliance() {
               </div>
 
               {/* 2. ISO Certificate */}
-              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-md bg-white p-3">
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="font-medium text-gray-800">ISO_9001_Certificate.jpg</span>
@@ -416,7 +414,7 @@ function Compliance() {
               </div>
 
               {/* 3. Fire Safety Certificate */}
-              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-md bg-white p-3">
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="font-medium text-gray-800">Fire_Safety_Certificate.pdf</span>
@@ -428,7 +426,7 @@ function Compliance() {
               </div>
 
               {/* 4. Business License */}
-              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-md bg-white p-3">
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="font-medium text-gray-800">Business_License_Renewal.pdf</span>
@@ -440,7 +438,7 @@ function Compliance() {
               </div>
 
               {/* 5. Insurance Policy */}
-              <div className="border border-gray-200 rounded-md bg-white p-3 hover:shadow-sm transition-shadow">
+              <div className="border border-gray-200 rounded-md bg-white p-3">
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="font-medium text-gray-800">Insurance_Policy_Commercial.pdf</span>
@@ -464,7 +462,7 @@ function Compliance() {
             {/* Audit List */}
             <div className="flex flex-col gap-3 mt-4">
               {/* 1. Environmental Compliance Audit */}
-              <div className="p-3 bg-white hover:shadow-sm transition-shadow">
+              <div className="p-3 bg-white">
                 <div className="flex justify-between items-start">
                   <span className="font-semibold text-gray-800 text-sm">Environmental Compliance Audit</span>
                   <span className="text-xs font-medium ">Passed</span>
@@ -483,7 +481,7 @@ function Compliance() {
               </div>
 
               {/* 2. Safety & Security Audit */}
-              <div className="p-3 bg-white hover:shadow-sm transition-shadow">
+              <div className="p-3 bg-white">
                 <div className="flex justify-between items-start">
                   <span className="font-semibold text-gray-800 text-sm">Safety & Security Audit</span>
                   <span className="text-xs font-medium">Minor Issues</span>
@@ -502,7 +500,7 @@ function Compliance() {
               </div>
 
               {/* 3. ISO 9001 Certification Review */}
-              <div className="p-3 bg-white hover:shadow-sm transition-shadow">
+              <div className="p-3 bg-white ">
                 <div className="flex justify-between items-start">
                   <span className="font-semibold text-gray-800 text-sm">ISO 9001 Certification Review</span>
                   <span className="text-xs font-medium">Scheduled</span>
@@ -521,7 +519,7 @@ function Compliance() {
               </div>
 
               {/* 4. Legal & Regulatory Compliance */}
-              <div className="p-3 bg-white hover:shadow-sm transition-shadow">
+              <div className="p-3 bg-white">
                 <div className="flex justify-between items-start">
                   <span className="font-semibold text-gray-800 text-sm">Legal & Regulatory Compliance</span>
                   <span className="text-xs font-medium">Passed</span>
@@ -541,6 +539,72 @@ function Compliance() {
             </div>
           </div>
 
+        </div>
+        <div class="max-w-md mx-auto bg-white rounded-2xl shadow p-5 font-sans">
+
+          <div class="text-center text-lg font-semibold text-slate-800 mb-4">
+            January 2024
+          </div>
+
+
+          <div class="grid grid-cols-7 gap-1 text-center text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+            <span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+
+
+          <div class="grid grid-cols-7 gap-1 text-sm">
+
+            <div class="text-slate-300 text-center py-1.5 rounded-full">31</div>
+
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">1</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">2</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">3</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">4</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">5</div>
+            <div class="text-slate-500 text-center py-1.5 rounded-full hover:bg-indigo-50">6</div>
+
+            <div class="text-slate-500 text-center py-1.5 rounded-full hover:bg-indigo-50">7</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">8</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">9</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">10</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">11</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">12</div>
+            <div class="text-slate-500 text-center py-1.5 rounded-full hover:bg-indigo-50">13</div>
+
+            <div class="text-slate-500 text-center py-1.5 rounded-full hover:bg-indigo-50">14</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">15</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">16</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">17</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">18</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">19</div>
+            <div class="text-slate-500 text-center py-1.5 rounded-full hover:bg-indigo-50">20</div>
+
+            <div class="text-slate-500 text-center py-1.5 rounded-full hover:bg-indigo-50">21</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">22</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50 relative">
+              23
+              <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-amber-500"></span>
+            </div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">24</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50 relative">
+              25
+              <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-500"></span>
+            </div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">26</div>
+            <div class="text-slate-500 text-center py-1.5 rounded-full hover:bg-indigo-50">27</div>
+
+            <div class="text-slate-500 text-center py-1.5 rounded-full hover:bg-indigo-50">28</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">29</div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50 relative">
+              30
+              <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-rose-500"></span>
+            </div>
+            <div class="text-slate-700 text-center py-1.5 rounded-full hover:bg-indigo-50">31</div>
+            <div class="text-slate-300 text-center py-1.5 rounded-full">1</div>
+            <div class="text-slate-300 text-center py-1.5 rounded-full">2</div>
+            <div class="text-slate-300 text-center py-1.5 rounded-full">3</div>
+          </div>
         </div>
       </div>
     </div>
