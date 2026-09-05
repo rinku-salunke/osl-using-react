@@ -13,7 +13,6 @@ import { FaTruck } from "react-icons/fa";
 import { TiStarFullOutline } from "react-icons/ti";
 import { GoAlertFill } from "react-icons/go";
 
-
 function Compliance() {
   return (
     <div>

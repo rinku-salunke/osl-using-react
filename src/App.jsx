@@ -15,6 +15,10 @@ import OrderOverview from './Logistics_Data/OrderManagement/OrderOverview';
 import LoadingReceipts from './Logistics_Data/OrderManagement/LoadingReceipts';
 import ConsignmentTracking from './Logistics_Data/OrderManagement/ConsignmentTracking';
 import RoutePlanning from './Logistics_Data/OrderManagement/RoutePlanning';
+import InvoiceManagement from './Logistics_Data/Documentation/InvoiceManagement';
+import DeliveryReceipts from './Logistics_Data/Documentation/DeliveryReceipts';
+import GatePassManagement from './Logistics_Data/Documentation/GatePassManagement';
+import ComplianceDocuments from './Logistics_Data/Documentation/ComplianceDocuments';
 
 function App() {
   return (
@@ -31,10 +35,14 @@ function App() {
           <Route path='administration' element={<Administration />} />
           <Route path='compliance' element={<Compliance />}></Route>
           <Route path='settings' element={<Settings />}></Route>
-          <Route path='order-overview' element={<OrderOverview/>}></Route>
+          <Route path='order-overview' element={<OrderOverview />}></Route>
           <Route path='loading-receipts' element={<LoadingReceipts />}></Route>
           <Route path='consignment-tracking' element={<ConsignmentTracking />}></Route>
           <Route path='route-planning' element={<RoutePlanning />}></Route>
+          <Route path="invoice-management" element={<InvoiceManagement />}></Route>
+          <Route path='delivery-receipts' element={<DeliveryReceipts />} ></Route>
+          <Route path='gate-pass-management' element={<GatePassManagement />}></Route>
+          <Route path='compliance-documents' element={<ComplianceDocuments />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
