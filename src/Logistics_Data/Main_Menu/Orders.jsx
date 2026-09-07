@@ -21,6 +21,9 @@ import { FiCopy } from "react-icons/fi";
 import { BsCheckCircleFill, BsExclamationTriangleFill, BsCircleFill } from "react-icons/bs";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GoPlus } from "react-icons/go";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { RiExpandUpDownFill } from "react-icons/ri";
+import { MdOutlineArrowDropDown } from "react-icons/md";
 
 
 function Orders() {
@@ -28,7 +31,7 @@ function Orders() {
   const orderData = [
     {
       id: '#LG-2024-001247',
-      client: 'AC',
+      client: 'Acme Corporation',
       date: 'Jan 15, 2024 09:30 AM',
       route: 'Mumbai → Delhi 850 km',
       priority: 'High',
@@ -36,7 +39,7 @@ function Orders() {
     },
     {
       id: '#LG-2024-001246',
-      client: 'GI',
+      client: 'Global Industries',
       date: 'Jan 15, 2024 08:15 AM',
       route: 'Chennai → Bangalore 350 km',
       priority: 'Medium',
@@ -44,7 +47,7 @@ function Orders() {
     },
     {
       id: '#LG-2024-001245',
-      client: 'ST',
+      client: 'StarTech Solutions',
       date: 'Jan 14, 2024 03:45 PM',
       route: 'Pune → Hyderabad 560 km',
       priority: 'Low',
@@ -311,22 +314,22 @@ function Orders() {
             <table className="w-full table-fixed divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="w-12 px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Sr.No</th>
-                  <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center gap-1">Order ID <HiOutlineSortAscending size={14} /></div>
+                  <th scope="col" className="w-12 px-4 py-3 text-center text-xs font-medium text-gray-500  tracking-wider">Sr.No</th>
+                  <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
+                    <div className="flex items-center gap-1">Order ID <RiExpandUpDownFill size={14} /></div>
                   </th>
-                  <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center gap-1">Client <HiOutlineSortAscending size={14} /></div>
+                  <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
+                    <div className="flex items-center gap-1">Client <RiExpandUpDownFill size={14} /></div>
                   </th>
-                  <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center gap-1">Date Created <HiOutlineSortAscending size={14} /></div>
+                  <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
+                    <div className="flex items-center gap-1">Date Created <MdOutlineArrowDropDown size={20} /></div>
                   </th>
-                  <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
-                  <th scope="col" className="w-1/12 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center gap-1">Priority <HiOutlineSortAscending size={14} /></div>
+                  <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">Route</th>
+                  <th scope="col" className="w-1/12 px-4 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
+                    <div className="flex items-center gap-1">Priority</div>
                   </th>
-                  <th scope="col" className="w-1/12 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center gap-1">Status <HiOutlineSortAscending size={14} /></div>
+                  <th scope="col" className="w-1/12 px-4 py-3 text-left text-xs font-medium text-gray-500  tracking-wider">
+                    <div className="flex items-center gap-1">Status <RiExpandUpDownFill size={14} /></div>
                   </th>
                 </tr>
               </thead>
@@ -343,12 +346,11 @@ function Orders() {
                       <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-blue-600">
                         <div className="flex items-center gap-1">
                           <span>#{order.id}</span>
-                          <FiCopy size={12} className="text-gray-400 cursor-pointer" />
                         </div>
                       </td>
                       <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-700">
                         <div className="flex items-center gap-3">
-                          <div className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold ${avatarColor}`}>
+                          <div className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${avatarColor}`}>
                             {initials}
                           </div>
                           <div>
@@ -428,7 +430,7 @@ function Orders() {
                   </div>
                   <span class="text-xs font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">Available</span>
                 </div>
-                <div class="mt-3 space-y-1.5 text-sm text-gray-600 border-t border-gray-100 pt-3">
+                <div class="mt-3 space-y-1.5 text-sm text-gray-600 border-t border-gray-100 pt-3 font-bold">
                   <div class="flex justify-between"><span class="font-medium text-gray-700">Driver:</span> <span>John Doe</span></div>
                   <div class="flex justify-between"><span class="font-medium text-gray-700">Capacity:</span> <span>10 tons</span></div>
                   <div class="flex justify-between"><span class="font-medium text-gray-700">Location:</span> <span>Mumbai Hub</span></div>
@@ -454,7 +456,7 @@ function Orders() {
                     In Use
                   </span>
                 </div>
-                <div class="mt-3 space-y-1.5 text-sm text-gray-600 border-t border-gray-100 pt-3">
+                <div class="mt-3 space-y-1.5 text-sm text-gray-600 border-t border-gray-100 pt-3 font-bold">
                   <div class="flex justify-between"><span class="font-medium text-gray-700">Driver:</span><span>Mike Wilson</span></div>
                   <div class="flex justify-between"><span class="font-medium text-gray-700">Capacity:</span><span>2 tons</span></div>
                   <div class="flex justify-between"><span class="font-medium text-gray-700">Location:</span><span>En Route</span>
@@ -490,7 +492,7 @@ function Orders() {
                 <div class="mt-3 space-y-1.5 text-sm text-gray-600 border-t border-gray-100 pt-3">
                   <div class="flex justify-between">
                     <span class="font-medium text-gray-700">Driver:</span>
-                    <span>Sarah Johnson</span>
+                    <span className='font-bold'>Sarah Johnson</span>
                   </div>
                   <div class="flex justify-between">
                     <span class="font-medium text-gray-700">Capacity:</span>
@@ -498,7 +500,7 @@ function Orders() {
                   </div>
                   <div class="flex justify-between">
                     <span class="font-medium text-gray-700">Location:</span>
-                    <span>Service Center</span>
+                    <span className='font-bold'>Service Center</span>
                   </div>
                 </div>
 
@@ -575,109 +577,133 @@ function Orders() {
           </div>
 
           {/* Performance Analytics */}
-          <div className="bg-white border border-gray-300 mb-4 p-4">
+          <div className="bg-white border border-gray-300 rounded-md mb-4 p-4">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-lg">Performance Analytics</h2>
+              <h2 className="font-bold text-lg text-gray-800">Performance Analytics</h2>
               <div className="flex items-center gap-3">
-                <div className="relative flex items-center gap-1 bg-gray-50 border border-gray-300 rounded-md px-3 py-1.5 hover:border-gray-400 transition-colors">
+                <div className="relative flex items-center gap-1 bg-gray-50 border border-gray-300 rounded-md px-3 py-1 hover:border-gray-400 transition-colors">
                   <select className="appearance-none bg-transparent border-none focus:outline-none cursor-pointer pr-5 text-gray-700 text-sm">
                     <option>Last 7 days</option>
                     <option>Last 14 days</option>
                     <option>Last 30 days</option>
                   </select>
-                  <span className="pointer-events-none text-gray-400 text-[10px] absolute right-2">▼</span>
+                  <span className="pointer-events-none text-gray-400 text-[10px] absolute right-2">
+                    <RiArrowDropDownLine size={25} />
+                  </span>
                 </div>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-md transition-colors">
+                <button className="text-dark-navy-blue text-sm flex items-center gap-1.5">
+                  <ImDownload3 size={16} />
                   Export Report
                 </button>
               </div>
             </div>
-            <div className="flex gap-4">
-              <div className="bg-blue-100 rounded-lg p-4 h-25 w-60 border border-none shadow-sm text-center">
-                <div className="text-4xl font-bold text-gray-800">94.5%</div>
-                <div className="text-sm font-medium text-gray-600 mt-1">On-Time Delivery</div>
-                <div className="text-center gap-1 mt-1 text-green-600 text-sm font-semibold">
-                  <span>↑</span>
+
+            {/* Metrics Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Card 1: On-Time Delivery */}
+              <div className="bg-blue-100 rounded-lg p-4 border border-blue-100">
+                <div className="text-3xl font-bold text-gray-800">94.5%</div>
+                <div className="text-sm font-medium text-gray-600 mt-0.5">On-Time Delivery</div>
+                <div className="flex items-center gap-1 mt-1 text-green-600 text-sm font-semibold">
+                  <FaArrowUp size={12} />
                   <span>+2.3%</span>
                 </div>
               </div>
-              <div className="bg-green-100 rounded-lg p-4 h-25 w-60 border border-none shadow-sm text-center">
-                <div className="text-4xl font-bold text-gray-800">87%</div>
-                <div className="text-sm font-medium text-gray-600 mt-1">Vehicle Utilization</div>
-                <div className="text-center gap-1 mt-1 text-green-600 text-sm font-semibold">
-                  <span>↑</span>
+
+              {/* Card 2: Vehicle Utilization */}
+              <div className="bg-green-100 rounded-lg p-4 border border-green-100">
+                <div className="text-3xl font-bold text-gray-800">87%</div>
+                <div className="text-sm font-medium text-gray-600 mt-0.5">Vehicle Utilization</div>
+                <div className="flex items-center gap-1 mt-1 text-green-600 text-sm font-semibold">
+                  <FaArrowUp size={12} />
                   <span>+5.1%</span>
                 </div>
               </div>
-              <div className="bg-orange-100 rounded-lg p-4 h-25 w-60 border border-none shadow-sm text-center">
-                <div className="text-4xl font-bold text-gray-800">2.1%</div>
-                <div className="text-sm font-medium text-gray-600 mt-1">Damage Rate</div>
-                <div className="text-center gap-1 mt-1 text-red-600 text-sm font-semibold">
-                  <span>↓</span>
+
+              {/* Card 3: Damage Rate */}
+              <div className="bg-orange-100 rounded-lg p-4 border border-orange-100">
+                <div className="text-3xl font-bold text-gray-800">2.1%</div>
+                <div className="text-sm font-medium text-gray-600 mt-0.5">Damage Rate</div>
+                <div className="flex items-center gap-1 mt-1 text-red-600 text-sm font-semibold">
+                  <FaArrowDown size={12} />
                   <span>-0.8%</span>
                 </div>
               </div>
-              <div className="bg-purple-100 rounded-lg p-4 h-25 w-60 border border-none shadow-sm text-center">
-                <div className="text-4xl font-bold text-gray-800">4.8</div>
-                <div className="text-sm font-medium text-gray-600 mt-1">Avg Rating</div>
-                <div className=" gap-1 mt-1 text-green-600 text-sm font-semibold text-center">
-                  <span>↑</span>
+
+              {/* Card 4: Avg Rating */}
+              <div className="bg-purple-100 rounded-lg p-4 border border-purple-100">
+                <div className="text-3xl font-bold text-gray-800">4.8</div>
+                <div className="text-sm font-medium text-gray-600 mt-0.5">Avg Rating</div>
+                <div className="flex items-center gap-1 mt-1 text-green-600 text-sm font-semibold">
+                  <FaArrowUp size={12} />
                   <span>+0.2</span>
                 </div>
               </div>
             </div>
-            <div className="bg-light-gray border border-none ml-0 mt-4 mr-0 h-60 flex flex-col items-center justify-center gap-1">
-              <IoTrendingDownSharp className="text-gray-500 w-6 h-6" />
-              <span>Performance Trends Chart</span>
-              <span>weekly delivery performance metrics</span>
+
+            {/* Chart Placeholder */}
+            <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg h-60 flex flex-col items-center justify-center gap-1">
+              <IoTrendingDownSharp className="text-gray-400 w-8 h-8" />
+              <span className="text-sm font-medium text-gray-500">Performance Trends Chart</span>
+              <span className="text-xs text-gray-400">weekly delivery performance metrics</span>
+
+
             </div>
           </div>
 
           {/* Recent Activities */}
-          <div className="bg-white border border-gray-300">
+          <div className="bg-white border border-gray-300 rounded-md">
             <div className="flex items-center justify-between p-4">
-              <h2 className="font-bold">Recent Activities</h2>
+              <h2 className="font-bold text-gray-800">Recent Activities</h2>
               <button className="flex items-center gap-1 text-dark-navy-blue hover:text-purple-800 text-sm font-medium">
-                <GrView className="w-4 h-4 text-dark-navy-blue" />
+                <GrView className="w-4 h-4" />
                 View all
               </button>
             </div>
-            <div className="flex gap-3 items-start px-4 py-2 border-none w-255 bg-light-gray m-4">
-              <div className="rounded-full p-1  mt-1 bg-green-100 text-green-700">
+
+            {/* Activity 1 - Delivered */}
+            <div className="flex gap-3 items-start px-4 py-2 bg-light-gray m-4 rounded-md">
+              <div className="rounded-full p-1 mt-1 bg-green-100 text-green-700">
                 <LuChevronRight className="w-4 h-4" />
               </div>
               <div>
-                <div className="font-semibold text-sm">Order #LG-2024-001247 delivered successfully</div>
+                <div className="font-semibold text-sm text-gray-800">Order #LG-2024-001247 delivered successfully</div>
                 <div className="text-xs text-gray-600">Vehicle TRK-001 completed delivery to Acme Corporation</div>
                 <div className="text-xs text-gray-400">2 minutes ago</div>
               </div>
             </div>
-            <div className="flex gap-3 items-start px-4 py-2 border-none w-255 bg-light-gray m-4">
-              <div className="rounded-full p-1  mt-1 bg-blue-100 text-blue-700">
-                <CiDeliveryTruck className="w-4 h-4 text-gray-600" />
+
+            {/* Activity 2 - Assigned */}
+            <div className="flex gap-3 items-start px-4 py-2 bg-light-gray m-4 rounded-md">
+              <div className="rounded-full p-1 mt-1 bg-blue-100 text-blue-700">
+                <CiDeliveryTruck className="w-4 h-4" />
               </div>
               <div>
-                <div className="font-semibold text-sm">Vehicle VAN-045 assigned to new order</div>
+                <div className="font-semibold text-sm text-gray-800">Vehicle VAN-045 assigned to new order</div>
                 <div className="text-xs text-gray-600">Order #LG-2024-001248 assigned to Mike Wilson</div>
                 <div className="text-xs text-gray-400">15 minutes ago</div>
               </div>
             </div>
-            <div className="flex gap-3 items-start px-4 py-2 border-none w-255 bg-light-gray m-4">
-              <div className="rounded-full p-1  mt-1  bg-orange-100 text-orange-700">
-                <RiAlertFill className="w-4 h-4 text-gray-600" />
+
+            {/* Activity 3 - Delay */}
+            <div className="flex gap-3 items-start px-4 py-2 bg-light-gray m-4 rounded-md">
+              <div className="rounded-full p-1 mt-1 bg-orange-100 text-orange-700">
+                <RiAlertFill className="w-4 h-4" />
               </div>
               <div>
-                <div className="font-semibold text-sm">Delay reported for Order #LG-2024-001245</div>
+                <div className="font-semibold text-sm text-gray-800">Delay reported for Order #LG-2024-001245</div>
                 <div className="text-xs text-gray-600">Traffic congestion causing 2-hour delay</div>
                 <div className="text-xs text-gray-400">1 hour ago</div>
               </div>
             </div>
-            <div className="flex gap-3 items-start px-4 py-2 border-none w-255 bg-light-gray m-4">
-              <div className=" rounded-full p-1  mt-1 bg-purple-100 text-purple-700">
-                <IoPersonAddSharp className="w-4 h-4 text-gray-600" />
+
+            {/* Activity 4 - New Client */}
+            <div className="flex gap-3 items-start px-4 py-2 bg-light-gray m-4 rounded-md">
+              <div className="rounded-full p-1 mt-1 bg-purple-100 text-purple-700">
+                <IoPersonAddSharp className="w-4 h-4" />
               </div>
               <div>
-                <div className="font-semibold text-sm">New client registered</div>
+                <div className="font-semibold text-sm text-gray-800">New client registered</div>
                 <div className="text-xs text-gray-600">TechFlow Enterprises added to client database</div>
                 <div className="text-xs text-gray-400">3 hours ago</div>
               </div>
