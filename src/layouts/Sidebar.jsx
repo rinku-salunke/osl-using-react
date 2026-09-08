@@ -28,7 +28,7 @@ function Sidebar() {
     ${isActive
             ? isDarkMode
                 ? 'bg-slate-700 text-white shadow-md'
-                : 'bg-[var(--color-halaki-rakhadi)] text-white shadow-md'
+                : 'bg-dark-navy-blue text-white shadow-md'
             : isDarkMode
                 ? 'text-slate-300 hover:bg-slate-800 hover:text-white'
                 : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
@@ -48,7 +48,7 @@ function Sidebar() {
         w-64 h-screen flex flex-col p-4 border-r border-b
         transition-colors duration-300
         ${isDarkMode
-                    ? 'bg-slate-900 border-slate-700'
+                    ? 'bg-dark-navy-blue border-slate-700'
                     : 'bg-white border-slate-200'
                 }
       `}

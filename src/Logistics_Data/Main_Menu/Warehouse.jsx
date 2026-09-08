@@ -1,451 +1,393 @@
 import React from 'react';
-import { LuChevronRight } from "react-icons/lu";
+import {
+  LuChevronRight,
+  LuHand
+} from "react-icons/lu";
 import { RiAlertFill } from "react-icons/ri";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { IoPersonAddSharp } from "react-icons/io5";
-import { MdOutlineInventory } from "react-icons/md";
 import { GoReport } from "react-icons/go";
 import { IoMapSharp } from "react-icons/io5";
+import { BiQrScan } from "react-icons/bi";
+import {
+  FiPackage,
+  FiClipboard,
+  FiPieChart,
+  FiCheckSquare,
+  FiBox,
+  FiCamera,
+  FiTruck,
+  FiEye,
+  FiPlay,
+  FiSettings,
+  FiChevronDown,
+  FiPlus
+} from 'react-icons/fi';
 
+const stats = [
+  {
+    id: 'total-inventory',
+    label: 'Total Inventory',
+    value: '24,567',
+    change: '↑ 5% from last week',
+    changeColor: 'text-green-600',
+    icon: FiPackage,
+  },
+  {
+    id: 'active-tasks',
+    label: 'Active Tasks',
+    value: '12',
+    change: '8 pending pickup',
+    changeColor: 'text-red-500',
+    icon: FiClipboard,
+  },
+  {
+    id: 'warehouse-utilization',
+    label: 'Warehouse Utilization',
+    value: '78%',
+    change: 'Optimal range',
+    changeColor: 'text-blue-600',
+    icon: FiPieChart,
+  },
+  {
+    id: 'items-processed',
+    label: 'Items Processed',
+    value: '1,456',
+    change: '↑ 12% from yesterday',
+    changeColor: 'text-green-600',
+    icon: FiCheckSquare,
+  },
+];
 
+const quickActions = [
+  { id: 'receive', label: 'Receive Items', icon: FiPackage, bg: 'bg-blue-100', iconColor: 'text-blue-900' },
+  { id: 'pick', label: 'Pick Items', icon: LuHand, bg: 'bg-green-100', iconColor: 'text-green-800' },
+  { id: 'pack', label: 'Pack Orders', icon: FiBox, bg: 'bg-purple-100', iconColor: 'text-purple-900' },
+  { id: 'qr-scan', label: 'QR Scan', icon: FiCamera, bg: 'bg-yellow-100', iconColor: 'text-yellow-900' },
+  { id: 'audit', label: 'Audit Stock', icon: FiClipboard, bg: 'bg-red-100', iconColor: 'text-red-900' },
+  { id: 'load', label: 'Load Vehicle', icon: FiTruck, bg: 'bg-indigo-100', iconColor: 'text-indigo-900' },
+];
+
+const orders = [
+  {
+    id: 'LG-001247',
+    priority: 'High',
+    assignee: 'Sarah Johnson',
+    items: 24,
+    location: 'Zone A-12',
+    started: '2 hours ago',
+    progress: 18,
+    total: 24,
+    btnColor: 'bg-blue-900',
+    status: 'In Progress',
+  },
+  {
+    id: 'LG-001248',
+    priority: 'High',
+    assignee: 'Sarah Johnson',
+    items: 24,
+    location: 'Zone A-12',
+    started: '2 hours ago',
+    progress: 18,
+    total: 24,
+    btnColor: 'bg-orange-500',
+    status: 'In Progress',
+  },
+  {
+    id: 'LG-001249',
+    priority: 'High',
+    assignee: 'Sarah Johnson',
+    items: 24,
+    location: 'Zone A-12',
+    started: '2 hours ago',
+    progress: 18,
+    total: 24,
+    btnColor: 'bg-blue-500',
+    status: 'In Progress',
+  },
+  {
+    id: 'LG-001250',
+    priority: 'High',
+    assignee: 'Sarah Johnson',
+    items: 24,
+    location: 'Zone A-12',
+    started: '2 hours ago',
+    progress: 18,
+    total: 24,
+    btnColor: 'bg-purple-500',
+    status: 'In Progress',
+  },
+];
+
+const inventoryLevels = [
+  { label: 'Optimal Stock', value: '18,456 items', percentage: 75, color: 'text-green-500' },
+  { label: 'Low Stock', value: '4,234 items', percentage: 17, color: 'text-orange-300' },
+  { label: 'Out Of Stock', value: '1,877 items', percentage: 8, color: 'text-red-600' },
+];
+
+const warehouseZones = [
+  { name: 'Zone A', category: 'Electronics', capacity: '85% capacity', bg: 'bg-blue-100', textColor: 'text-blue-500' },
+  { name: 'Zone B', category: 'Textiles', capacity: '72% capacity', bg: 'bg-green-100', textColor: 'text-green-500' },
+  { name: 'Zone C', category: 'Food & Beverage', capacity: '91% capacity', bg: 'bg-orange-100', textColor: 'text-orange-500' },
+  { name: 'Zone D', category: 'Automotive', capacity: '68% capacity', bg: 'bg-purple-100', textColor: 'text-purple-500' },
+];
+
+const activities = [
+  {
+    id: 1,
+    icon: LuChevronRight,
+    iconBg: 'bg-green-300',
+    title: 'Order #LG-2024-001247 delivered successfully',
+    detail: 'Vehicle TRK-001 completed delivery to Acme Corporation',
+    time: '2 minutes ago',
+  },
+  {
+    id: 2,
+    icon: CiDeliveryTruck,
+    iconBg: 'bg-blue-300',
+    title: 'Vehicle VAN-045 assigned to new order',
+    detail: 'Order #LG-2024-001248 assigned to Mike Wilson',
+    time: '15 minutes ago',
+  },
+  {
+    id: 3,
+    icon: RiAlertFill,
+    iconBg: 'bg-orange-300',
+    title: 'Delay reported for Order #LG-2024-001245',
+    detail: 'Traffic congestion causing 2-hour delay',
+    time: '1 hour ago',
+  },
+  {
+    id: 4,
+    icon: IoPersonAddSharp,
+    iconBg: 'bg-purple-300',
+    title: 'New client registered',
+    detail: 'TechFlow Enterprises added to client database',
+    time: '3 hours ago',
+  },
+];
+
+const performanceMetrics = [
+  { label: 'lorem', bg: 'bg-blue-300' },
+  { label: 'lorem', bg: 'bg-green-300' },
+  { label: 'lorem', bg: 'bg-orange-300' },
+  { label: 'lorem', bg: 'bg-purple-300' },
+];
+
+// ----- Component -----
 function Warehouse() {
   return (
     <div>
-      <div class="border-b border-gray-200 pb-2 -mx-8 px-8 flex flex-col bg-white">
-        <span class="font-bold">Warehouse Operations</span>
-        <span>manage inventory picking, packing and warehouse tasks</span>
-      </div>
-
-      <div class="bg-gray-50 min-h-screen -mx-8">   {/* इथे राखाडी बॅकग्राउंड */}
-
-        <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ml-4">
-          <div class="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between">
-            <div class="text-xs text-gray-500 font-medium tracking-wide">Total Inventory</div>
-            <div class="text-2xl font-bold text-gray-800">24,567</div>
-            <div class="text-xs text-green-600 font-medium">↑ 5% from last week</div>
-          </div>
-
-          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between">
-            {/* Row 1: Title on left, Icon on right */}
-            <div className="flex items-center justify-between text-xs text-gray-500 font-medium tracking-wide">
-              <span>Active Tasks</span>
-              <MdOutlineInventory className="text-base text-gray-400" /> {/* Icon on the right */}
-            </div>
-
-            {/* Row 2: Number */}
-            <div className="text-2xl font-bold text-gray-800">12</div>
-
-            {/* Row 3: Subtext */}
-            <div className="text-xs text-red-500">8 pending pickup</div>
-          </div>
-
-          <div class="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between">
-            <div class="text-xs text-gray-500 font-medium tracking-wide">Warehouse Utilization</div>
-            <div class="text-2xl font-bold text-gray-800">78%</div>
-            <div class="text-xs text-blue-600 font-medium">Optimal range</div>
-          </div>
-
-          <div class="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between">
-            <div class="text-xs text-gray-500 font-medium tracking-wide">Items Processed</div>
-            <div class="text-2xl font-bold text-gray-800">1,456</div>
-            <div class="text-xs text-green-600 font-medium">↑ 12% from yesterday</div>
-          </div>
+      {/* Header */}
+      <header className="border-b border-gray-200 pb-2 -mx-8 px-8 flex justify-between bg-white">
+        <div className="flex flex-col">
+          <h1 className="font-bold text-lg">Warehouse Operations</h1>
+          <span className="text-sm text-gray-600">manage inventory picking, packing and warehouse tasks</span>
         </div>
-
-
-        <div class="bg-white border border-gray-300 ml-8  p-4 m-4 flex flex-col gap-3 rounded-md">
-          <div>
-            <h2 class="text-sm font-semibold text-gray-700">Quick Actions</h2>
-          </div>
-          <div class="flex flex-wrap gap-3">
-            <div class="flex-1 min-w-[100px] text-xs text-gray-500 font-medium bg-gray-100 h-20 rounded-md p-2 flex items-center justify-center border border-gray-200">
-              Receive items
-            </div>
-            <div class="flex-1 min-w-[100px] text-xs text-gray-500 font-medium bg-gray-100 h-20 rounded-md p-2 flex items-center justify-center border border-gray-200">
-              Pick items
-            </div>
-            <div class="flex-1 min-w-[100px] text-xs text-gray-500 font-medium bg-gray-100 h-20 rounded-md p-2 flex items-center justify-center border border-gray-200">
-              Pack items
-            </div>
-            <div class="flex-1 min-w-[100px] text-xs text-gray-500 font-medium bg-gray-100 h-20 rounded-md p-2 flex items-center justify-center border border-gray-200">
-              QR Scan
-            </div>
-            <div class="flex-1 min-w-[100px] text-xs text-gray-500 font-medium bg-gray-100 h-20 rounded-md p-2 flex items-center justify-center border border-gray-200">
-              Audit Stock
-            </div>
-            <div class="flex-1 min-w-[100px] text-xs text-gray-500 font-medium bg-gray-100 h-20 rounded-md p-2 flex items-center justify-center border border-gray-200">
-              Load Vehicle
-            </div>
-          </div>
+        <div className="flex items-center gap-3 flex-shrink-0">
+          <button
+            className="text-gray-600 border border-gray-300 rounded-md px-4 py-1.5 font-medium cursor-pointer hover:bg-gray-50 inline-flex items-center gap-2"
+            aria-label="Scan QR code"
+          >
+            <BiQrScan size={20} />
+            Scan QR
+          </button>
+          <button className="bg-dark-navy-blue text-white px-4 py-1.5 rounded-md font-medium cursor-pointer hover:opacity-90">
+            + New Task
+          </button>
         </div>
-        <div class="bg-white border border-gray-300 ml-8  m-4 flex  rounded-md h-150">
-          <div class="grid grid-cols-2 gap-4 p-4 w-full m-4">
+      </header>
 
-            <div class="border border-gray-300 h-67 mb-0">
-              <div>
-                <div class="flex justify-between">
-                  <div class="flex flex-col">
-                    <span>Pick Order #LG-001247</span>
-                    <span>Priority:High</span>
-                  </div>
-                  <span class="text-gray-600">In Progress</span>
+      <main className="bg-gray-50 min-h-screen -mx-8">
+        {/* Stats Cards */}
+        <section className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ml-4">
+          {stats.map((stat) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={stat.id}
+                className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-600">{stat.label}</span>
+                  <Icon className="text-base text-gray-400" aria-hidden="true" />
                 </div>
-
-                <div class="flex justify-between mt-0">
-                  <div class="flex flex-col">
-                    <span>Assigned to:</span>
-                    <span>Items:</span>
-                    <span>Location:</span>
-                    <span>Started:</span>
-                  </div>
-                  <div class="flex flex-col m-2">
-                    <span class="font-bold text-black">Sarah Johnson</span>
-                    <span class="font-bold text-black">24 items</span>
-                    <span class="font-bold text-black">Zone A-12</span>
-                    <span class="font-bold text-black">2 hours ago</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="flex justify-between p-2 mb-2">
-                    <span>progress</span>
-                    <span>18/24 items</span>
-                  </div>
-                  <div class=" bg-gray-200 h-2 rounde-md m-1 w-[90%]">
-                    <div class="bg-green-600 h-2 w-[60%]"></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div>
-                  </div>
-                  <span class="bg-blue-900 m-1 text-white text-center py-2 rounded-md inline-block w-[96%]">
-                    View Details
-                  </span>
+                <div className="text-2xl font-bold text-gray-800">{stat.value}</div>
+                <div className={`text-xs flex items-center font-medium ${stat.changeColor}`}>
+                  {stat.change}
                 </div>
               </div>
-            </div>
-            <div class="border border-gray-300 h-67">
-              <div>
-                <div class="flex justify-between">
-                  <div class="flex flex-col">
-                    <span>Pick Order #LG-001247</span>
-                    <span>Priority:High</span>
-                  </div>
-                  <span class="text-gray-600">In Progress</span>
-                </div>
+            );
+          })}
+        </section>
 
-                <div class="flex justify-between mt-0">
-                  <div class="flex flex-col">
-                    <span>Assigned to:</span>
-                    <span>Items:</span>
-                    <span>Location:</span>
-                    <span>Started:</span>
+        {/* Quick Actions */}
+        <section className="bg-white border border-gray-300 ml-8 p-4 m-4 rounded-md">
+          <h2 className="text-sm font-semibold text-gray-700 mb-3">Quick Actions</h2>
+          <div className="flex flex-nowrap gap-3 overflow-x-auto pb-2">
+            {quickActions.map((action) => {
+              const Icon = action.icon;
+              return (
+                <button
+                  key={action.id}
+                  className="flex flex-col items-center justify-center bg-gray-50 rounded-lg p-4 h-24 min-w-[120px] flex-1 hover:shadow-md transition"
+                  aria-label={action.label}
+                >
+                  <div className={`flex items-center justify-center w-12 h-12 ${action.bg} rounded-lg mb-2`}>
+                    <Icon className={`text-2xl ${action.iconColor}`} aria-hidden="true" />
                   </div>
-                  <div class="flex flex-col m-2">
-                    <span class="font-bold text-black">Sarah Johnson</span>
-                    <span class="font-bold text-black">24 items</span>
-                    <span class="font-bold text-black">Zone A-12</span>
-                    <span class="font-bold text-black">2 hours ago</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="flex justify-between p-2 mb-2">
-                    <span>progress</span>
-                    <span>18/24 items</span>
-                  </div>
-                  <div class=" bg-gray-200 h-2 rounde-md m-1 w-[90%]">
-                    <div class="bg-green-600 h-2 w-[60%]"></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div>
-                  </div>
-                  <span class="bg-orange-500 m-1 text-white text-center py-2 rounded-md inline-block w-[96%]">
-                    View Details
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="border border-gray-300 h-67">
-              <div>
-                <div class="flex justify-between">
-                  <div class="flex flex-col">
-                    <span>Pick Order #LG-001247</span>
-                    <span>Priority:High</span>
-                  </div>
-                  <span class="text-gray-600">In Progress</span>
-                </div>
-
-                <div class="flex justify-between mt-0">
-                  <div class="flex flex-col">
-                    <span>Assigned to:</span>
-                    <span>Items:</span>
-                    <span>Location:</span>
-                    <span>Started:</span>
-                  </div>
-                  <div class="flex flex-col m-2">
-                    <span class="font-bold text-black">Sarah Johnson</span>
-                    <span class="font-bold text-black">24 items</span>
-                    <span class="font-bold text-black">Zone A-12</span>
-                    <span class="font-bold text-black">2 hours ago</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="flex justify-between p-2 mb-2">
-                    <span>progress</span>
-                    <span>18/24 items</span>
-                  </div>
-                  <div class=" bg-gray-200 h-2 rounde-md m-1 w-[90%]">
-                    <div class="bg-green-600 h-2 w-[60%]"></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div>
-                  </div>
-                  <span class="bg-blue-500 m-1 text-white text-center py-2 rounded-md inline-block w-[96%]">
-                    View Details
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="border border-gray-300 h-67">
-              <div>
-                <div class="flex justify-between">
-                  <div class="flex flex-col">
-                    <span>Pick Order #LG-001247</span>
-                    <span>Priority:High</span>
-                  </div>
-                  <span class="text-gray-600">In Progress</span>
-                </div>
-
-                <div class="flex justify-between mt-0">
-                  <div class="flex flex-col">
-                    <span>Assigned to:</span>
-                    <span>Items:</span>
-                    <span>Location:</span>
-                    <span>Started:</span>
-                  </div>
-                  <div class="flex flex-col m-2">
-                    <span class="font-bold text-black">Sarah Johnson</span>
-                    <span class="font-bold text-black">24 items</span>
-                    <span class="font-bold text-black">Zone A-12</span>
-                    <span class="font-bold text-black">2 hours ago</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="flex justify-between p-2 mb-2">
-                    <span>progress</span>
-                    <span>18/24 items</span>
-                  </div>
-                  <div class=" bg-gray-200 h-2 rounde-md m-1 w-[90%]">
-                    <div class="bg-green-600 h-2 w-[60%]"></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div>
-                  </div>
-                  <span class="bg-purple-500 m-1 text-white text-center py-2 rounded-md inline-block w-[96%]">
-                    View Details
-                  </span>
-                </div>
-              </div>
-            </div>
+                  <span className="text-sm font-medium text-gray-800 text-center">{action.label}</span>
+                </button>
+              );
+            })}
           </div>
-        </div>
+        </section>
 
-        <div class="grid grid-cols-1 gap-4 p-4 w-full m-4">
+        {/* Pick Orders Grid */}
+        <section className="bg-white border border-gray-300 ml-8 m-4 flex rounded-md">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 w-full m-4">
+            {orders.map((order) => {
+              const progressPercent = Math.round((order.progress / order.total) * 100);
+              return (
+                <div key={order.id} className="border border-gray-300 rounded-md p-4 flex flex-col justify-between h-67">
+                  <div>
+                    <div className="flex justify-between">
+                      <div className="flex flex-col">
+                        <span className="font-semibold">Pick Order #{order.id}</span>
+                        <span className="text-xs text-gray-500">Priority: {order.priority}</span>
+                      </div>
+                      <span className="text-sm text-gray-600">{order.status}</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1 text-sm mt-2">
+                      <span className="text-gray-500">Assigned to:</span>
+                      <span className="font-medium">{order.assignee}</span>
+                      <span className="text-gray-500">Items:</span>
+                      <span className="font-medium">{order.items} items</span>
+                      <span className="text-gray-500">Location:</span>
+                      <span className="font-medium">{order.location}</span>
+                      <span className="text-gray-500">Started:</span>
+                      <span className="font-medium">{order.started}</span>
+                    </div>
+                    <div className="mt-3">
+                      <div className="flex justify-between text-xs">
+                        <span>Progress</span>
+                        <span>{order.progress}/{order.total} items</span>
+                      </div>
+                      <div className="bg-gray-200 h-2 rounded mt-1 w-full">
+                        <div
+                          className="bg-green-600 h-2 rounded transition-all"
+                          style={{ width: `${progressPercent}%` }}
+                          role="progressbar"
+                          aria-valuenow={progressPercent}
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className={`mt-3 w-full text-white py-2 rounded-md ${order.btnColor} hover:opacity-90 transition`}
+                  >
+                    View Details
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
-        </div>
-
-
-
-        <div class="flex gap-4 px-4">
-          {/* Left Column */}
-          <div class="bg-white border border-gray-300 p-4 rounded-md flex-1 h-100  ml-3.5">
-            <div className="flex flex-row gap-60">
-              <h3 className="font-semibold text-gray-700 text-sm tracking-wider mb-3">
-                Inventory Levels
-              </h3>
-              <h3 className="font-semibold  text-sm tracking-wider mb-3 text-blue-500">
-                <GoReport className="h-3 w-3 inline mr-1" />   {/* आता हा आयकॉन टेक्स्टच्या आधी */}
+        {/* Inventory Levels & Warehouse Zones */}
+        <div className="flex flex-col lg:flex-row gap-4 px-4">
+          {/* Left: Inventory Levels */}
+          <section className="bg-white border border-gray-300 p-4 rounded-md flex-1 h-auto lg:h-100 ml-3.5">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="font-semibold text-gray-700 text-sm tracking-wider">Inventory Levels</h3>
+              <button className="font-semibold text-sm text-blue-500 hover:underline flex items-center gap-1">
+                <GoReport className="h-3 w-3" aria-hidden="true" />
                 View Full Report
-              </h3>
+              </button>
             </div>
-            <div class=" p-4 rounded-md flex flex-col gap-2 ">
-
-              <div class="bg-gray-50 h-15">
-                <div class="flex justify-between">
-
-                  <div class="flex flex-col">
-                    <span >Optimal Stock</span>
-                    <span >18,456 items</span>
+            <div className="flex flex-col gap-2">
+              {inventoryLevels.map((item, index) => (
+                <div key={index} className="bg-gray-50 p-3 rounded-md flex justify-between items-center">
+                  <div>
+                    <div className="font-medium">{item.label}</div>
+                    <div className="text-sm text-gray-600">{item.value}</div>
                   </div>
-                  <span class="m-2 text-green-500 font-bold">75%</span>
+                  <span className={`font-bold ${item.color}`}>{item.percentage}%</span>
                 </div>
-              </div>
-              <div class="bg-gray-50 h-15">
-                <div class="flex justify-between">
-                  <div class="flex flex-col">
-                    <span>Low Stock</span>
-                    <span class="text-1xl">4,234 items</span>
-                  </div>
-                  <span class="m-2 text-orange-300 font-bold">17%</span>
-                </div>
-              </div>
-              <div class="bg-gray-50 h-15">
-                <div class="flex justify-between">
-                  <div class="flex flex-col">
-                    <span>Out Of Stock</span>
-                    <span>1,877 items</span>
-                  </div>
-                  <span class="m-2 text-red-600 font-bold">8%</span>
-                </div>
-              </div>
+              ))}
             </div>
+          </section>
 
-          </div>
-
-          {/* Right Column */}
-          <div class="bg-white border border-gray-300 p-4 rounded-md flex-1 h-100">
-            <div className="flex flex-row gap-60">
-              <h3 className="font-semibold text-gray-700 text-sm tracking-wider mb-3">
-                Warehouse Zones
-              </h3>
-              <h3 className="font-semibold  text-sm tracking-wider mb-3 text-blue-500">
-                <IoMapSharp className="h-3 w-3 inline mr-1" />   {/* आता हा आयकॉन टेक्स्टच्या आधी */}
+          {/* Right: Warehouse Zones */}
+          <section className="bg-white border border-gray-300 p-4 rounded-md flex-1 h-auto lg:h-100">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="font-semibold text-gray-700 text-sm tracking-wider">Warehouse Zones</h3>
+              <button className="font-semibold text-sm text-blue-500 hover:underline flex items-center gap-1">
+                <IoMapSharp className="h-3 w-3" aria-hidden="true" />
                 Zone Map
-              </h3>
+              </button>
             </div>
-            <div class="grid grid-cols-2 gap-2 mt-4 ">
-              <div class="h-22 rounded-md text-center  bg-blue-100 ">
-                <div class="flex flex-col items-center justify-center m-2 ">
-                  <span class="text-blue-500 font-bold">Zone A</span>
-                  <span>Electronics</span>
-                  <span class="text-green-500">85% capacity</span>
+            <div className="grid grid-cols-2 gap-2 mt-4">
+              {warehouseZones.map((zone, index) => (
+                <div key={index} className={`${zone.bg} rounded-md p-3 text-center`}>
+                  <div className={`font-bold ${zone.textColor}`}>{zone.name}</div>
+                  <div className="text-sm">{zone.category}</div>
+                  <div className="text-xs text-gray-600">{zone.capacity}</div>
                 </div>
+              ))}
+            </div>
+            <div className="bg-gray-50 p-3 mt-4 rounded-md">
+              <div className="flex justify-between">
+                <span className="text-black">Overall Utilization</span>
+                <span className="text-blue-950 font-bold">79%</span>
               </div>
-              <div class="h-22 rounded-md text-center bg-green-100">
-                <div class="flex flex-col m-2 ">
-                  <span class="text-green-500 font-bold">Zone B</span>
-                  <span>Texttiles</span>
-                  <span class="text-green-500">72% capacity</span>
-                </div>
-
-              </div>
-              <div class="h-22 rounded-md text-center bg-orange-100">
-                <div class="flex flex-col items-center justify-center m-2">
-                  <span class="text-orange-500 font-bold">Zone C</span>
-                  <span>Food 7 Beverage</span>
-                  <span class="text-orange-500">91% capacity</span>
-                </div>
-              </div>
-              <div class="h-22 rounded-md text-center bg-purple-100">
-                <div class="flex flex-col items-center justify-center m-2 ">
-                  <span class="text-purple-500 font-bold">Zone D</span>
-                  <span>Automative</span>
-                  <span class="text-blue-500">685 capacity</span>
-                </div>
+              <div className="w-full bg-gray-200 rounded-md h-2 mt-1">
+                <div className="bg-blue-900 h-2 rounded-md" style={{ width: '79%' }} />
               </div>
             </div>
-
-            <div class="bg-gray-50 h-15 mt-4 rounded-md">
-              <div class="flex justify-between p-2">
-                <span class="text-black">Overall Utilization</span>
-                <span class="text-blue-950 font-bold">79%</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-md h-2">
-                <div class="bg-blue-900 h-2 w-[60%] me-3"></div>
-              </div>
-            </div>
-          </div>
+          </section>
         </div>
 
-        <div class="bg-white border border-gray-300 ml-8 p-4 m-4 rounded-md h-120">   {/* removed mt-1 */}
-          <div className="flex items-center justify-between p-4">
-            <h2 className="font-bold">Recent Warehouse Activity</h2>
-
+        {/* Recent Activity */}
+        <section className="bg-white border border-gray-300 ml-8 p-4 m-4 rounded-md">
+          <h2 className="font-bold text-lg mb-4">Recent Warehouse Activity</h2>
+          <div className="space-y-4">
+            {activities.map((activity) => {
+              const Icon = activity.icon;
+              return (
+                <div key={activity.id} className="flex gap-3 items-start px-4 py-2 bg-gray-50 rounded-md">
+                  <div className={`rounded-full p-1 flex-shrink-0 mt-1 ${activity.iconBg}`}>
+                    <Icon className="w-4 h-4 text-gray-600" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm">{activity.title}</div>
+                    <div className="text-xs text-gray-600">{activity.detail}</div>
+                    <div className="text-xs text-gray-400">{activity.time}</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
+        </section>
 
-          <div class="flex gap-3 items-start px-4 py-2 border-none w-255 bg-light-gray m-4">
-            <div class=" rounded-full p-1 flex-shrink-0 mt-1  bg-green-300">
-              <LuChevronRight class="w-4 h-4 " />
-            </div>
-            <div>
-              <div class="font-semibold text-sm">Order #LG-2024-001247 delivered successfully</div>
-              <div class="text-xs text-gray-600">Vehicle TRK-001 completed delivery to Acme Corporation</div>
-              <div class="text-xs text-gray-400">2 minutes ago</div>
-            </div>
-          </div>
-
-          <div class="flex gap-3 items-start px-4 py-2 border-none w-255 bg-light-gray m-4">
-            <div class="bg-blue-300 rounded-full p-1 flex-shrink-0 mt-1">
-              <CiDeliveryTruck class="w-4 h-4 text-gray-600" />
-            </div>
-            <div>
-              <div class="font-semibold text-sm">Vehicle VAN-045 assigned to new order</div>
-              <div class="text-xs text-gray-600">Order #LG-2024-001248 assigned to Mike Wilson</div>
-              <div class="text-xs text-gray-400">15 minutes ago</div>
-            </div>
-          </div>
-
-          <div class="flex gap-3 items-start px-4 py-2 border-none w-255 bg-light-gray m-4">
-            <div class="bg-orange-300 rounded-full p-1 flex-shrink-0 mt-1">
-              <RiAlertFill className="w-4 h-4 text-gray-600" />
-            </div>
-            <div>
-              <div class="font-semibold text-sm">Delay reported for Order #LG-2024-001245</div>
-              <div class="text-xs text-gray-600">Traffic congestion causing 2-hour delay</div>
-              <div class="text-xs text-gray-400">1 hour ago</div>
-            </div>
-          </div>
-
-          <div class="flex gap-3 items-start px-4 py-2 border-none w-255 bg-light-gray m-4">
-            <div class="bg-purple-300 rounded-full p-1 flex-shrink-0 mt-1">
-              <IoPersonAddSharp className="w-4 h-4 text-gray-600" />
-            </div>
-            <div >
-              <div class="font-semibold text-sm">New client registered</div>
-              <div class="text-xs text-gray-600">TechFlow Enterprises added to client database</div>
-              <div class="text-xs text-gray-400">3 hours ago</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white border border-gray-300 ml-8 p-4 m-4 gap-2 rounded-md h-45">   {/* removed mt-1 */}
-          <div >
-            <div class="mb-2">
-              <h2>Warehouse Performance Metrics</h2>
-            </div>
-
-            <div class="flex gap-2 mt-10">
-              <div class="flex-1 w-[100] h-20 bg-blue-300  rounded-md p-2 flex items-center justify-center border border-gray-200 text-xs text-gray-500 font-medium">
-                lorem
+        {/* Performance Metrics */}
+        <section className="bg-white border border-gray-300 ml-8 p-4 m-4 rounded-md">
+          <h2 className="font-bold text-lg mb-2">Warehouse Performance Metrics</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+            {performanceMetrics.map((metric, index) => (
+              <div
+                key={index}
+                className={`${metric.bg} rounded-md p-4 flex items-center justify-center border border-gray-200 text-xs text-gray-500 font-medium h-20`}
+              >
+                {metric.label}
               </div>
-
-              <div class="flex-1 w-[100] h-20 bg-green-300 rounded-md p-2 flex items-center justify-center border border-gray-200 text-xs text-gray-500 font-medium">
-                lorem
-              </div>
-              <div class="flex-1 w-[100] h-20 bg-orange-300 rounded-md p-2 flex items-center justify-center border border-gray-200 text-xs text-gray-500 font-medium">
-                lorem
-              </div>
-              <div class="flex-1 w-[100] h-20 bg-purple-300 rounded-md p-2 flex items-center justify-center border border-gray-200 text-xs text-gray-500 font-medium">
-                lorem
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
-
-      </div>
-
+        </section>
+      </main>
     </div>
-
   );
 }
 
