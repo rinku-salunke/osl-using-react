@@ -13,6 +13,7 @@ import { IoIosArrowRoundUp } from "react-icons/io";
 import { LuTimer } from "react-icons/lu";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoWarning, IoAlertCircle } from "react-icons/io5";
+import { FaRoute } from "react-icons/fa";
 
 function Shipments() {
 
@@ -89,7 +90,8 @@ function Shipments() {
         </div>
 
         <div className="flex items-center space-x-3">
-          <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-1.5 font-medium cursor-pointer">
+          <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-1.5 font-medium cursor-pointer inline-flex gap-1">
+            <FaRoute size={20} />
             Route Planner
           </span>
           <span className="bg-dark-navy-blue text-white px-4 py-1.5 rounded-md font-medium cursor-pointer">
@@ -100,7 +102,7 @@ function Shipments() {
 
       {/* ✅ Fixed Main: Removed -mx-8, changed to p-4 space-y-4 */}
       <div className="bg-gray-50 min-h-screen p-4 space-y-4">
-        
+
         {/* Stats Cards Grid - Removed ml-4 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full relative">
@@ -304,10 +306,13 @@ function Shipments() {
         <div className="bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden">
           <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
             <h1 className="font-bold text-gray-800 text-lg">Active Shipments</h1>
-            <button className="flex items-center gap-2 bg-dark-navy-blue text-white text-sm font-medium px-4 py-2 rounded-md transition">
-              <IoMdAdd className="w-4 h-4" />
-              Create Shipment
-            </button>
+            <div className='flex flex-row gap-1'>
+              <h3 className='text-sm mt-3  text-gray-500'>Showing 1-10 of 247 shipments</h3>
+              <button className="flex items-center gap-2 bg-dark-navy-blue text-white text-sm font-medium px-4 py-2 rounded-md transition">
+                <IoMdAdd className="w-4 h-4" />
+                Create Shipment
+              </button>
+            </div>
           </div>
 
           <div className="overflow-x-auto">
@@ -382,11 +387,11 @@ function Shipments() {
             </table>
           </div>
 
-          <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 bg-gray-50">
+          <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 bg-white">
             <span className="text-sm text-gray-500">Showing 1 to 5 of 247 results</span>
             <div className="flex items-center gap-1">
               <button className="px-3 py-1 text-sm text-gray-500 hover:bg-gray-200 rounded-md transition">Previous</button>
-              <button className="px-3 py-1 text-sm bg-blue-600 text-white rounded-md">1</button>
+              <button className="px-3 py-1 text-sm bg-dark-navy-blue text-white rounded-md">1</button>
               <button className="px-3 py-1 text-sm text-gray-500 hover:bg-gray-200 rounded-md transition">2</button>
               <button className="px-3 py-1 text-sm text-gray-500 hover:bg-gray-200 rounded-md transition">3</button>
               <button className="px-3 py-1 text-sm text-gray-500 hover:bg-gray-200 rounded-md transition">Next</button>
