@@ -4,7 +4,15 @@ import { IoMdAdd } from "react-icons/io";
 import { GrFormView } from "react-icons/gr";
 import { RxCross1 } from "react-icons/rx";
 import { FiAlertTriangle } from "react-icons/fi";
-
+import { CiCalendarDate } from "react-icons/ci";
+import { RiFilterFill } from "react-icons/ri";
+import { MdDownload } from "react-icons/md";
+import { RiTruckFill } from "react-icons/ri";
+import { CiClock2 } from "react-icons/ci";
+import { IoIosArrowRoundUp } from "react-icons/io";
+import { LuTimer } from "react-icons/lu";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoWarning, IoAlertCircle } from "react-icons/io5";
 
 function Shipments() {
 
@@ -94,36 +102,215 @@ function Shipments() {
       <div className="bg-gray-50 min-h-screen -mx-8">
         {/* Stats Cards Grid */}
         <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ml-4">
-          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between">
-            <div className="text-xs text-gray-500 font-medium tracking-wide">Active Shipments</div>
-            <div className="text-2xl font-bold text-gray-800">247</div>
-            <div className="text-xs text-green-600 font-medium">18 in transit</div>
+          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full relative">
+            {/* आयकॉन गोलाकार पार्श्वभूमीसह (बहुतेक डॅशबोर्ड कार्ड्समध्ये असतो) */}
+            <div className="absolute top-8 right-3 bg-blue-100 rounded-md h-9 text-center justify-center items-center w-9 p-1.5">
+              <RiTruckFill className="text-gray-500" size={20} />
+            </div>
+
+            <div className="flex flex-col justify-between h-full">
+              <div className="text-xs text-gray-500 font-medium tracking-wide">Active Shipments</div>
+              <div className="text-2xl font-bold text-gray-800">247</div>
+              <div className="text-xs text-blue-700 font-medium inline-flex items-center gap-1 ">
+                <RiTruckFill className="text-blue-700" size={20} />
+
+                18 in transit</div>
+            </div>
           </div>
 
-          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between">
-            <div className="text-xs text-gray-500 font-medium tracking-wide">On-Time Delivery</div>
-            <div className="text-2xl font-bold text-gray-800">96.8%</div>
-            <div className="text-xs text-red-500">2.15 from last month</div>
-          </div>
+          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex items-center justify-between shadow-sm">
+            {/* Left side: Text */}
+            <div className="flex flex-col justify-center gap-1">
+              <div className="text-xs text-gray-500 font-medium tracking-wide">On-Time Delivery</div>
+              <div className="text-2xl font-bold text-gray-800">96.8%</div>
+              <div className="text-xs text-green-600 flex items-center">
+                <IoIosArrowRoundUp className="text-base" /> 2.1% from last month
+              </div>
+            </div>
 
-          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between">
-            <div className="text-xs text-gray-500 font-medium tracking-wide">Average Delivery Time</div>
-            <div className="text-2xl font-bold text-gray-800">2.4d</div>
-            <div className="text-xs text-blue-600 font-medium">0.02d faster</div>
+            {/* Right side: Icon Box */}
+            <div className="bg-green-100 rounded-md p-3 text-green-600 h-12 w-12 flex items-center justify-center text-2xl">
+              <CiClock2 />
+            </div>
           </div>
+          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex items-center justify-between shadow-sm">
+            {/* Left side: Text */}
+            <div className="flex flex-col justify-center gap-1">
+              <div className="text-xs text-gray-500 font-medium tracking-wide">Average Delivery Time</div>
+              <div className="text-2xl font-bold text-gray-800">2.4d</div>
+              <div className="text-xs text-orange-600 flex items-center gap-1 font-medium">
+                <span className="bg-orange-600 text-white rounded-full p-0.5">
+                  <IoIosArrowDown className="text-[10px]" />
+                </span>
+                0.2d faster
+              </div>
+            </div>
 
-          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex flex-col justify-between">
-            <div className="text-xs text-gray-500 font-medium tracking-wide">Delivery Issues</div>
-            <div className="text-2xl font-bold text-gray-800">8</div>
-            <div className="text-xs text-green-600 font-medium">Requires attention</div>
+            {/* Right side: Icon Box */}
+            <div className="bg-orange-100 rounded-md p-3 text-orange-600 h-12 w-12 flex items-center justify-center text-2xl">
+              <LuTimer />
+            </div>
+          </div>
+          <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full flex items-center justify-between shadow-sm">
+            {/* Left side: Text */}
+            <div className="flex flex-col justify-center gap-1">
+              <div className="text-xs text-gray-500 font-medium tracking-wide">Delivery Issues</div>
+              <div className="text-2xl font-bold text-gray-800">8</div>
+              <div className="text-xs text-red-600 flex items-center gap-1 font-medium">
+              <IoWarning className="text-sm" />
+                Requires attention
+              </div>
+            </div>
+
+            {/* Right side: Icon Box */}
+            <div className="bg-red-100 rounded-md p-3 text-red-600 h-12 w-12 flex items-center justify-center text-2xl">
+             <IoAlertCircle />
+            </div>
           </div>
         </div>
 
-        {/* Empty placeholder cards (kept as per your request) */}
-        <div className="bg-white border border-gray-300 ml-8 p-4 m-4 flex flex-col gap-4 rounded-md h-40">
+        <div className="bg-white border border-gray-300 p-4 m-4 rounded-md">
+          {/* पहिली ओळ - Status, Route, Date Range आणि Calendar Icon (शेवटी) */}
+          <div className="flex flex-wrap items-center gap-4">
+            {/* Status */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-700 font-medium whitespace-nowrap">Status:</span>
+              <select className="border border-gray-300 rounded-md px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <option>All Statuses</option>
+                <option>Pending</option>
+                <option>Assigned</option>
+                <option>In Transit</option>
+                <option>Delivered</option>
+              </select>
+            </div>
+
+            {/* Route */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-700 font-medium whitespace-nowrap">Route:</span>
+              <select className="border border-gray-300 rounded-md px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <option>All Routes</option>
+                <option>Mumbai → Delhi</option>
+                <option>Chennai → Bangalore</option>
+                <option>Pune → Hyderabad</option>
+              </select>
+            </div>
+
+            {/* Date Range - हा भाग तसाच */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-700 font-medium whitespace-nowrap">Date Range:</span>
+              <input
+                type="text"
+                placeholder="mm/dd/yyyy"
+                className="border border-gray-300 rounded-md px-3 py-1.5 text-sm w-28 bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+              <span className="text-gray-400 text-sm">to</span>
+              <input
+                type="text"
+                placeholder="mm/dd/yyyy"
+                className="border border-gray-300 rounded-md px-3 py-1.5 text-sm w-28 bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* Calendar Icon - आता 1st line च्या अगदी शेवटी (ml-auto ने उजवीकडे) */}
+            <CiCalendarDate size={28} className="text-gray-500 cursor-pointer ml-auto" />
+          </div>
+
+          {/* दुसरी ओळ - Filter आणि Export बटणे (उजवीकडे) */}
+          <div className="flex justify-end mt-3">
+            <div className="flex items-center gap-2">
+              <button className="bg-gray-50 hover:bg-gray-200 border border-gray-300 text-gray-700 text-sm font-medium px-5 py-1.5 rounded-md transition-colors inline-flex items-center gap-2">
+                <RiFilterFill size={18} />
+                Filter
+              </button>
+              <button className="bg-dark-navy-blue hover:bg-blue-800 text-white text-sm font-medium px-4 py-1.5 rounded-md transition-colors inline-flex items-center gap-2">
+                <MdDownload size={18} />
+                Export
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white border border-gray-300 ml-8 p-4 m-4 flex flex-col gap-3 rounded-md h-100">
+        <div className="bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden">
+          {/* Header Section */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-100">
+            <h2 className="text-lg font-semibold text-gray-800">Real-Time Shipment Tracking</h2>
+            <div className="flex gap-2">
+              <button className="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-md text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                </svg>
+                Full Screen
+              </button>
+              <button className="flex items-center gap-2 px-4 py-2 bg-dark-navy-blue border border-indigo-600 rounded-md text-white text-sm font-medium hover:bg-indigo-700 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Refresh
+              </button>
+            </div>
+          </div>
+
+          {/* Map Section */}
+          <div className="relative m-4 h-96 overflow-hidden rounded-lg">
+            {/* Your provided iframe */}
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30239.371363488313!2d73.86754319751884!3d18.66752185201002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1788861683807!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Live Tracking Map"
+              className="rounded-lg"
+            />
+
+            {/* Active Vehicles Overlay */}
+            <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 w-72 border border-gray-100">
+              <h3 className="text-sm font-semibold text-gray-800 mb-3">Active Vehicles</h3>
+              <ul className="space-y-2.5">
+                <li className="flex items-center text-xs text-gray-600">
+                  <span className="w-3 h-3 rounded-full bg-green-500 mr-2 inline-block"></span>
+                  TRK-001: Mumbai -&gt; Delhi
+                </li>
+                <li className="flex items-center text-xs text-gray-600">
+                  <span className="w-3 h-3 rounded-full bg-blue-500 mr-2 inline-block"></span>
+                  TRK-002: Delhi -&gt; Kolkata
+                </li>
+                <li className="flex items-center text-xs text-gray-600">
+                  <span className="w-3 h-3 rounded-full bg-orange-500 mr-2 inline-block"></span>
+                  TRK-003: Chennai -&gt; Bangalore
+                </li>
+                <li className="flex items-center text-xs text-gray-600">
+                  <span className="w-3 h-3 rounded-full bg-purple-500 mr-2 inline-block"></span>
+                  TRK-004: Pune -&gt; Hyderabad
+                </li>
+              </ul>
+            </div>
+
+            {/* Legend Overlay */}
+            <div className="absolute bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 w-48 border border-gray-100">
+              <h3 className="text-sm font-semibold text-gray-800 mb-3">Legend</h3>
+              <ul className="space-y-2.5">
+                <li className="flex items-center text-xs text-gray-600">
+                  <span className="w-3 h-3 rounded-full bg-green-500 mr-2 inline-block"></span>
+                  On Schedule
+                </li>
+                <li className="flex items-center text-xs text-gray-600">
+                  <span className="w-3 h-3 rounded-full bg-orange-500 mr-2 inline-block"></span>
+                  Delayed
+                </li>
+                <li className="flex items-center text-xs text-gray-600">
+                  <span className="w-3 h-3 rounded-full bg-red-500 mr-2 inline-block"></span>
+                  Issue/Alert
+                </li>
+                <li className="flex items-center text-xs text-gray-600">
+                  <span className="w-3 h-3 rounded-full bg-blue-500 mr-2 inline-block"></span>
+                  Delivery Point
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* Active Shipments Table - Full width border */}

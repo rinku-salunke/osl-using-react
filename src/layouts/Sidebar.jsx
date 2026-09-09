@@ -53,9 +53,8 @@ function Sidebar() {
                 }
       `}
         >
-
-            {/* Navigation */}
-            <nav className="flex-1 overflow-y-auto space-y-6">
+            {/* Navigation – येथे overflow-y-auto आणि custom scrollbar styling */}
+            <nav className="flex-1 overflow-y-auto space-y sidebar-nav">
                 {/* Main Menu */}
                 <div>
                     <h3 className={headingClasses}>Main Menu</h3>
@@ -65,8 +64,7 @@ function Sidebar() {
                         <li><NavLink to="/warehouse" className={linkClasses}><FiBox /> Warehouse</NavLink></li>
                         <li><NavLink to="/shipments" className={linkClasses}><FiTruck /> Shipments</NavLink></li>
                         <li><NavLink to="/clients" className={linkClasses}><FiUsers /> Clients</NavLink></li>
-                        <li><NavLink to={"/vehicles"} className={linkClasses}><PiVanDuotone />
-                            Vehicles</NavLink></li>
+                        <li><NavLink to={"/vehicles"} className={linkClasses}><PiVanDuotone /> Vehicles</NavLink></li>
                     </ul>
                 </div>
 
@@ -146,7 +144,27 @@ function Sidebar() {
                 </div>
             </nav>
 
-
+            {/* Custom Scrollbar Styles – फक्त या कंपोनंटसाठी */}
+            <style>{`
+                .sidebar-nav::-webkit-scrollbar {
+                    width: 4px;  /* अतिशय पातळ */
+                }
+                .sidebar-nav::-webkit-scrollbar-track {
+                    background: transparent;  /* पारदर्शक */
+                }
+                .sidebar-nav::-webkit-scrollbar-thumb {
+                    background: ${isDarkMode ? '#475569' : '#94a3b8'};  /* हलका राखाडी */
+                    border-radius: 10px;
+                }
+                .sidebar-nav::-webkit-scrollbar-thumb:hover {
+                    background: ${isDarkMode ? '#64748b' : '#64748b'};
+                }
+                /* Firefox साठी */
+                .sidebar-nav {
+                    scrollbar-width: thin;
+                    scrollbar-color: ${isDarkMode ? '#475569' : '#94a3b8'} transparent;
+                }
+            `}</style>
         </aside>
     );
 }

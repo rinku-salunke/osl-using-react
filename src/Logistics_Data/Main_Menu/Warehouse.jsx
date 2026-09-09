@@ -68,54 +68,59 @@ const quickActions = [
   { id: 'load', label: 'Load Vehicle', icon: FiTruck, bg: 'bg-indigo-100', iconColor: 'text-indigo-900' },
 ];
 
+// ✅ Updated orders to match the four cards from hundred.jpg
 const orders = [
   {
     id: 'LG-001247',
     priority: 'High',
+    status: 'In Progress',
     assignee: 'Sarah Johnson',
     items: 24,
+    total: 24,
     location: 'Zone A-12',
     started: '2 hours ago',
     progress: 18,
-    total: 24,
-    btnColor: 'bg-blue-900',
-    status: 'In Progress',
+    actionLabel: 'View Details',
+    btnColor: 'bg-blue-600',
   },
   {
-    id: 'LG-001248',
-    priority: 'High',
-    assignee: 'Sarah Johnson',
-    items: 24,
-    location: 'Zone A-12',
-    started: '2 hours ago',
-    progress: 18,
-    total: 24,
-    btnColor: 'bg-orange-500',
-    status: 'In Progress',
+    id: 'LG-001245',
+    priority: 'Medium',
+    status: 'Pending',
+    assignee: 'Mike Wilson',
+    items: 12,
+    total: 12,
+    location: 'Packing Station 3',
+    due: 'In 30 mins',
+    progress: 0,
+    actionLabel: 'Start Task',
+    btnColor: 'bg-green-600',
   },
   {
-    id: 'LG-001249',
+    id: 'SH-2024-089',
     priority: 'High',
-    assignee: 'Sarah Johnson',
-    items: 24,
-    location: 'Zone A-12',
-    started: '2 hours ago',
-    progress: 18,
-    total: 24,
-    btnColor: 'bg-blue-500',
-    status: 'In Progress',
+    status: 'Scheduled',
+    assignee: 'John Doe',
+    items: 156,
+    total: 156,
+    location: 'Loading Bay 2',
+    eta: '15 mins',
+    progress: 156,          // fully prepared => shows "Ready"
+    actionLabel: 'Track Arrival',
+    btnColor: 'bg-purple-600',
   },
   {
-    id: 'LG-001250',
-    priority: 'High',
-    assignee: 'Sarah Johnson',
-    items: 24,
-    location: 'Zone A-12',
-    started: '2 hours ago',
-    progress: 18,
-    total: 24,
-    btnColor: 'bg-purple-500',
-    status: 'In Progress',
+    id: 'Stock Audit - Zone C',
+    priority: 'Low',
+    status: 'Ongoing',
+    assignee: 'Team Alpha',
+    items: 450,
+    total: 450,
+    location: 'Zone C (Aisles 15-20)',
+    started: '4 hours ago',
+    progress: 280,
+    actionLabel: 'View Report',
+    btnColor: 'bg-gray-700',
   },
 ];
 
@@ -173,6 +178,16 @@ const performanceMetrics = [
   { label: 'lorem', bg: 'bg-orange-300' },
   { label: 'lorem', bg: 'bg-purple-300' },
 ];
+
+const getStatusClass = (status) => {
+  switch (status) {
+    case 'In Progress': return 'bg-blue-100 text-blue-700';
+    case 'Pending':     return 'bg-yellow-100 text-yellow-700';
+    case 'Scheduled':   return 'bg-indigo-100 text-indigo-700';
+    case 'Ongoing':     return 'bg-orange-100 text-orange-700';
+    default:            return 'bg-gray-100 text-gray-700';
+  }
+};
 
 // ----- Component -----
 function Warehouse() {
@@ -243,40 +258,80 @@ function Warehouse() {
           </div>
         </section>
 
-        {/* Pick Orders Grid */}
-        <section className="bg-white border border-gray-300 ml-8 m-4 flex rounded-md">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 w-full m-4">
+        {/* Active Warehouse Tasks */}
+        <section className="bg-white border border-gray-300 ml-8 m-4 rounded-md">
+          {/* Header Row */}
+          <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
+            <h2 className="font-semibold text-gray-800 text-lg">Active Warehouse Tasks</h2>
+            <div className="flex items-center gap-3">
+              <button className="flex items-center gap-1 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-md transition">
+                All Tasks <span className="text-xs">▼</span>
+              </button>
+              <button className="flex items-center gap-1 text-sm text-white bg-dark-navy-blue hover:bg-blue-700 px-3 py-1.5 rounded-md transition">
+                <span className="text-base leading-none">+</span> Add Task
+              </button>
+            </div>
+          </div>
+
+          {/* Grid of cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 w-full">
             {orders.map((order) => {
               const progressPercent = Math.round((order.progress / order.total) * 100);
+              const isComplete = order.progress === order.total;
+
               return (
                 <div key={order.id} className="border border-gray-300 rounded-md p-4 flex flex-col justify-between h-67">
                   <div>
-                    <div className="flex justify-between">
-                      <div className="flex flex-col">
-                        <span className="font-semibold">Pick Order #{order.id}</span>
-                        <span className="text-xs text-gray-500">Priority: {order.priority}</span>
+                    {/* Header */}
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <span className="font-semibold">
+                          {order.id.startsWith('LG') ? 'Pick Order' : 
+                           order.id.startsWith('SH') ? 'Receive Shipment' : 
+                           order.id}
+                        </span>
+                        <div className="flex flex-wrap gap-2 items-center mt-0.5">
+                          <span className="text-xs text-gray-500">Priority: {order.priority}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full ${getStatusClass(order.status)}`}>
+                            {order.status}
+                          </span>
+                        </div>
                       </div>
-                      <span className="text-sm text-gray-600">{order.status}</span>
+                      {order.due && <span className="text-sm text-gray-500">Due: {order.due}</span>}
+                      {order.eta && <span className="text-sm text-gray-500">ETA: {order.eta}</span>}
                     </div>
+
+                    {/* Details grid */}
                     <div className="grid grid-cols-2 gap-1 text-sm mt-2">
                       <span className="text-gray-500">Assigned to:</span>
                       <span className="font-medium">{order.assignee}</span>
-                      <span className="text-gray-500">Items:</span>
+
+                      <span className="text-gray-500">
+                        {order.id.startsWith('SH') ? 'Expected Items:' : 'Items:'}
+                      </span>
                       <span className="font-medium">{order.items} items</span>
+
                       <span className="text-gray-500">Location:</span>
                       <span className="font-medium">{order.location}</span>
-                      <span className="text-gray-500">Started:</span>
-                      <span className="font-medium">{order.started}</span>
+
+                      {order.started && (
+                        <>
+                          <span className="text-gray-500">Started:</span>
+                          <span className="font-medium">{order.started}</span>
+                        </>
+                      )}
                     </div>
+
+                    {/* Progress bar */}
                     <div className="mt-3">
                       <div className="flex justify-between text-xs">
                         <span>Progress</span>
-                        <span>{order.progress}/{order.total} items</span>
+                        <span>{isComplete ? 'Ready' : `${order.progress}/${order.total} items`}</span>
                       </div>
                       <div className="bg-gray-200 h-2 rounded mt-1 w-full">
                         <div
-                          className="bg-green-600 h-2 rounded transition-all"
-                          style={{ width: `${progressPercent}%` }}
+                          className={`h-2 rounded transition-all ${isComplete ? 'bg-green-600' : 'bg-blue-600'}`}
+                          style={{ width: `${Math.min(progressPercent, 100)}%` }}
                           role="progressbar"
                           aria-valuenow={progressPercent}
                           aria-valuemin={0}
@@ -285,10 +340,13 @@ function Warehouse() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Action Button */}
                   <button
-                    className={`mt-3 w-full text-white py-2 rounded-md ${order.btnColor} hover:opacity-90 transition`}
+                    className={`mt-3 w-full text-white py-2 rounded-md ${order.btnColor} hover:opacity-90 transition flex items-center justify-center gap-1`}
                   >
-                    View Details
+                    {order.actionIcon && <span>{order.actionIcon}</span>}
+                    {order.actionLabel}
                   </button>
                 </div>
               );
