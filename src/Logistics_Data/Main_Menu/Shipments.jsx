@@ -15,6 +15,15 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoWarning, IoAlertCircle } from "react-icons/io5";
 import { FaRoute } from "react-icons/fa";
 
+// Icons for Actions column
+import { GrView } from "react-icons/gr";
+import { VscLocation } from "react-icons/vsc";
+import { GoAlertFill } from "react-icons/go";
+import { FaCheckCircle, FaWrench } from "react-icons/fa";
+
+// Icons for Delivery Alerts
+import { FaBell, FaClock, FaInfoCircle } from "react-icons/fa";
+
 function Shipments() {
 
   const shipmentsData = [
@@ -80,15 +89,55 @@ function Shipments() {
     }
   ];
 
+  const getIconColor = (vehicleId) => {
+    const num = parseInt(vehicleId.split('-')[1] || '0', 10);
+    const colorMap = {
+      1: "bg-green-100 text-green-600",
+      2: "bg-blue-100 text-blue-600",
+      3: "bg-orange-100 text-orange-600",
+      4: "bg-purple-100 text-purple-600",
+      5: "bg-red-100 text-red-600",
+    };
+    return colorMap[num] || colorMap[1];
+  };
+
+  const getEtaStyles = (eta, timeRemaining) => {
+    const etaLower = eta?.toLowerCase() || '';
+    const timeLower = timeRemaining?.toLowerCase() || '';
+
+    if (timeLower.includes('overdue') || etaLower.includes('hold') || timeLower.includes('breakdown')) {
+      return { mainText: 'text-red-500', subText: 'text-red-500' };
+    }
+    if (etaLower.includes('delivered')) {
+      return { mainText: 'text-green-600', subText: 'text-gray-500' };
+    }
+    return { mainText: 'text-gray-800', subText: 'text-gray-500' };
+  };
+
+  const getProgressColor = (status) => {
+    switch (status) {
+      case 'Delivered':
+      case 'In Transit':
+        return 'bg-green-500';
+      case 'Out for Delivery':
+        return 'bg-blue-500';
+      case 'Delayed':
+        return 'bg-orange-500';
+      case 'Vehicle Issue':
+        return 'bg-red-500';
+      default:
+        return 'bg-gray-300';
+    }
+  };
+
   return (
     <div>
-      {/* ✅ Fixed Header: Removed -mx-8, changed to px-4 */}
+      {/* Header */}
       <div className="bg-white border-b border-gray-300 flex justify-between items-center px-4 py-3">
         <div className="flex flex-col">
           <h1 className="font-bold text-black text-lg">Vehicle & Gate Pass Management</h1>
           <span className="text-sm text-gray-600">Manage fleet vehicles, gate passes, and vehicle documentation.</span>
         </div>
-
         <div className="flex items-center space-x-3">
           <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-1.5 font-medium cursor-pointer inline-flex gap-1">
             <FaRoute size={20} />
@@ -100,16 +149,14 @@ function Shipments() {
         </div>
       </div>
 
-      {/* ✅ Fixed Main: Removed -mx-8, changed to p-4 space-y-4 */}
       <div className="bg-gray-50 min-h-screen p-4 space-y-4">
-
-        {/* Stats Cards Grid - Removed ml-4 */}
+        
+        {/* Stats Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full relative">
             <div className="absolute top-8 right-3 bg-blue-100 rounded-md h-9 text-center justify-center items-center w-9 p-1.5">
               <RiTruckFill className="text-gray-500" size={20} />
             </div>
-
             <div className="flex flex-col justify-between h-full">
               <div className="text-xs text-gray-500 font-medium tracking-wide">Active Shipments</div>
               <div className="text-2xl font-bold text-gray-800">247</div>
@@ -128,7 +175,6 @@ function Shipments() {
                 <IoIosArrowRoundUp className="text-base" /> 2.1% from last month
               </div>
             </div>
-
             <div className="bg-green-100 rounded-md p-3 text-green-600 h-12 w-12 flex items-center justify-center text-2xl">
               <CiClock2 />
             </div>
@@ -145,7 +191,6 @@ function Shipments() {
                 0.2d faster
               </div>
             </div>
-
             <div className="bg-orange-100 rounded-md p-3 text-orange-600 h-12 w-12 flex items-center justify-center text-2xl">
               <LuTimer />
             </div>
@@ -160,14 +205,13 @@ function Shipments() {
                 Requires attention
               </div>
             </div>
-
             <div className="bg-red-100 rounded-md p-3 text-red-600 h-12 w-12 flex items-center justify-center text-2xl">
               <IoAlertCircle />
             </div>
           </div>
         </div>
 
-        {/* Filter Section - Removed m-4 */}
+        {/* Filter Section */}
         <div className="bg-white border border-gray-300 p-4 rounded-md">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2">
@@ -223,7 +267,7 @@ function Shipments() {
           </div>
         </div>
 
-        {/* Map Section - Fixed margins */}
+        {/* Map Section */}
         <div className="bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden">
           <div className="flex items-center justify-between p-4 border-b border-gray-100">
             <h2 className="text-lg font-semibold text-gray-800">Real-Time Shipment Tracking</h2>
@@ -302,7 +346,7 @@ function Shipments() {
           </div>
         </div>
 
-        {/* Active Shipments Table - Removed ml-8 and m-4 */}
+        {/* Active Shipments Table */}
         <div className="bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden">
           <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
             <h1 className="font-bold text-gray-800 text-lg">Active Shipments</h1>
@@ -329,60 +373,87 @@ function Shipments() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {shipmentsData.map((shipment) => (
-                  <tr key={shipment.id} className="hover:bg-gray-50 transition">
-                    <td className="px-4 py-3">
-                      <div className="font-medium text-gray-800">{shipment.id}</div>
-                      <span>{shipment.priority}</span>
-                    </td>
+                {shipmentsData.map((shipment) => {
+                  const styles = getEtaStyles(shipment.eta, shipment.timeRemaining);
+                  return (
+                    <tr key={shipment.id} className="hover:bg-gray-50 transition">
+                      <td className="px-4 py-3">
+                        <div className="font-medium text-gray-800">{shipment.id}</div>
+                        <span className='text-gray-500'>{"Priority: " + shipment.priority}</span>
+                      </td>
 
-                    <td className="px-4 py-3">
-                      <div className="text-gray-800 font-medium">{shipment.route}</div>
-                      <div className="text-xs text-gray-400">{shipment.distance}</div>
-                    </td>
+                      <td className="px-4 py-3">
+                        <div className="text-gray-800 font-medium">{shipment.route}</div>
+                        <div className="text-xs text-gray-400">{shipment.distance}</div>
+                      </td>
 
-                    <td className="px-4 py-3">
-                      <div className="text-gray-800 font-medium">{shipment.vehicle}</div>
-                      <div className="text-xs text-gray-400">Driver: {shipment.driver}</div>
-                    </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          <div className={`flex items-center justify-center w-10 h-10 rounded-lg ${getIconColor(shipment.vehicle)}`}>
+                            <RiTruckFill className="text-xl" />
+                          </div>
+                          <div className="flex flex-col">
+                            <div className="text-gray-800 font-medium">{shipment.vehicle}</div>
+                            <div className="text-xs text-gray-400">Driver: {shipment.driver}</div>
+                          </div>
+                        </div>
+                      </td>
 
-                    <td className="px-4 py-3 font-bold">
-                      <span>{shipment.status}</span>
-                    </td>
+                      <td className="px-4 py-3 font-bold">
+                        <span>{shipment.status}</span>
+                      </td>
 
-                    <td className="px-4 py-3">
-                      <div className="text-sm text-gray-800">{shipment.eta}</div>
-                      <div className="text-xs font-medium text-gray-500">
-                        {shipment.timeRemaining}
-                      </div>
-                    </td>
+                      <td className="px-4 py-3">
+                        <div className={`text-sm ${styles.mainText}`}>
+                          {shipment.eta}
+                        </div>
+                        <div className={`text-xs font-medium ${styles.subText}`}>
+                          {shipment.timeRemaining}
+                        </div>
+                      </td>
 
-                    <td className="px-4 py-3">
-                      <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-2">
-                          <div className="w-20 bg-gray-200 rounded-full h-2">
+                      <td className="px-4 py-3">
+                        <div className="flex flex-col gap-1.5">
+                          <div className="w-full bg-gray-200 rounded-full h-2">
                             <div
-                              className={`h-2 rounded-full ${shipment.progress >= 90 ? 'bg-green-500' :
-                                shipment.progress >= 70 ? 'bg-blue-500' :
-                                  shipment.progress >= 50 ? 'bg-yellow-500' :
-                                    'bg-red-500'
-                                }`}
+                              className={`h-2 rounded-full ${getProgressColor(shipment.status)}`}
                               style={{ width: `${shipment.progress}%` }}
                             ></div>
                           </div>
-                          <span className="text-xs text-gray-600 font-medium">{shipment.progress}%</span>
+                          <span className="text-xs text-gray-500 font-medium">
+                            {shipment.progress}% Complete
+                          </span>
                         </div>
-                        <span className="text-[10px] text-gray-400">{shipment.progress}% Complete</span>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td className="px-4 py-3">
-                      <button className="text-sm">
-                        <GrFormView />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          <button className="text-blue-800 hover:text-blue-900 transition">
+                            <GrView className="w-5 h-5" />
+                          </button>
+                          
+                          {shipment.status === 'In Transit' || shipment.status === 'Out for Delivery' ? (
+                            <button className="text-gray-600 hover:text-gray-800 transition">
+                              <VscLocation className="w-5 h-5" />
+                            </button>
+                          ) : shipment.status === 'Delivered' ? (
+                            <button className="text-green-500 hover:text-green-600 transition">
+                              <FaCheckCircle className="w-5 h-5" />
+                            </button>
+                          ) : shipment.status === 'Delayed' ? (
+                            <button className="text-red-500 hover:text-red-600 transition">
+                              <GoAlertFill className="w-5 h-5" />
+                            </button>
+                          ) : shipment.status === 'Vehicle Issue' ? (
+                            <button className="text-red-500 hover:text-red-600 transition">
+                              <FaWrench className="w-5 h-5" />
+                            </button>
+                          ) : null}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -399,14 +470,27 @@ function Shipments() {
           </div>
         </div>
 
-        {/* Route Performance & Delivery Alerts - Fixed margins */}
+        {/* Route Performance & Delivery Alerts */}
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="bg-white border border-gray-300 p-4 rounded-md flex-1">
             <div className="flex justify-between items-center mb-3">
               <h3 className="font-semibold text-gray-700 text-sm tracking-wider">
                 Route Performance
               </h3>
-              <span className="text-xs text-gray-400">Last 7 Days</span>
+              
+              {/* ✅ UPDATED DROPDOWN HERE */}
+              <div className="relative inline-block">
+                <select className="appearance-none bg-white border border-gray-200 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer shadow-sm">
+                  <option>Last 7 Days</option>
+                  <option>Last 30 Days</option>
+                  <option>This Month</option>
+                  <option>Last Month</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                  <IoIosArrowDown className="w-4 h-4" />
+                </div>
+              </div>
+              
             </div>
 
             <div className="space-y-3">
@@ -447,60 +531,83 @@ function Shipments() {
             </div>
           </div>
 
+          {/* Delivery Alerts */}
           <div className="bg-white border border-gray-300 p-4 rounded-md flex-1">
-            <div className="flex justify-between items-center mb-3">
-              <h3 className="font-semibold text-gray-700 text-sm tracking-wider">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-semibold text-gray-800 text-lg">
                 Delivery Alerts
               </h3>
-              <span className="text-dark-navy-blue text-sm font-medium cursor-pointer hover:underline">
+              <span className="text-blue-900 text-sm font-medium cursor-pointer hover:underline flex items-center gap-1">
+                <FaBell className="w-4 h-4" />
                 Manage Alerts
               </span>
             </div>
 
             <div>
-              <div className="flex items-center justify-between bg-red-100 rounded-md p-2 m-2">
-                <div className="w-6 h-6 rounded-full bg-red-200 items-center justify-center flex mr-2">
-                  <FiAlertTriangle className="w-3.5 h-3.5 text-red-600" />
+              {/* Alert 1: Red */}
+              <div className="flex items-start justify-between bg-red-50 border border-red-200 rounded-lg p-4 mb-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <FiAlertTriangle className="w-4 h-4 text-red-500" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Vehicle Breakdown - TRK-005</p>
+                    <p className="text-xs text-gray-500 mt-0.5">Shipment SH-2024-001243 delayed due to vehicle issue</p>
+                    <p className="text-xs text-red-500 font-medium mt-1">15 minutes ago</p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-gray-800">Vehicle Breakdown - TRK-005</p>
-                  <p className="text-xs text-gray-500">Shipment SH-2024-001243 delayed due to vehicle issue</p>
-                  <p className="text-xs text-gray-400 mt-0.5">15 minutes ago</p>
-                </div>
-                <RxCross1 className="w-4 h-4 text-gray-400 hover:text-red-500 cursor-pointer transition flex-shrink-0 ml-2" />
+                <RxCross1 className="w-4 h-4 text-red-400 hover:text-red-600 cursor-pointer flex-shrink-0 mt-1" />
               </div>
 
-              <div className="flex items-start bg-orange-100 p-2 m-2">
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-gray-800">Delivery Delayed</p>
-                  <p className="text-xs text-gray-500">SH-2024-001245 is running 2 hours behind schedule</p>
-                  <p className="text-xs text-gray-400 mt-0.5">1 hour ago</p>
+              {/* Alert 2: Orange */}
+              <div className="flex items-start justify-between bg-orange-50 border border-orange-200 rounded-lg p-4 mb-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <FaClock className="w-4 h-4 text-orange-500" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Delivery Delayed</p>
+                    <p className="text-xs text-gray-500 mt-0.5">SH-2024-001245 is running 2 hours behind schedule</p>
+                    <p className="text-xs text-orange-500 font-medium mt-1">1 hour ago</p>
+                  </div>
                 </div>
-                <RxCross1 className="w-4 h-4 text-orange-500 cursor-pointer transition flex-shrink-0 ml-2" />
+                <RxCross1 className="w-4 h-4 text-orange-400 hover:text-orange-600 cursor-pointer flex-shrink-0 mt-1" />
               </div>
 
-              <div className="flex items-center justify-between bg-blue-100 p-2 m-2">
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-gray-800">Route Optimization Available</p>
-                  <p className="text-xs text-gray-500">New route suggested for Mumbai-Delhi corridor</p>
-                  <p className="text-xs text-gray-400 mt-0.5">2 hours ago</p>
+              {/* Alert 3: Blue */}
+              <div className="flex items-start justify-between bg-blue-50 border border-blue-200 rounded-lg p-4 mb-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <FaInfoCircle className="w-4 h-4 text-blue-500" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Route Optimization Available</p>
+                    <p className="text-xs text-gray-500 mt-0.5">New route suggested for Mumbai-Delhi corridor</p>
+                    <p className="text-xs text-blue-500 font-medium mt-1">2 hours ago</p>
+                  </div>
                 </div>
-                <RxCross1 className="w-4 h-4 text-blue-500 cursor-pointer transition flex-shrink-0 ml-2" />
+                <RxCross1 className="w-4 h-4 text-blue-400 hover:text-blue-600 cursor-pointer flex-shrink-0 mt-1" />
               </div>
 
-              <div className="flex items-center justify-between bg-green-100 rounded-md p-2 m-2">
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-gray-800">Delivery Completed</p>
-                  <p className="text-xs text-gray-500">SH-2024-001244 delivered successfully to Hyderabad</p>
-                  <p className="text-xs text-gray-400 mt-0.5">3 hours ago</p>
+              {/* Alert 4: Green */}
+              <div className="flex items-start justify-between bg-green-50 border border-green-200 rounded-lg p-4 mb-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <FaCheckCircle className="w-4 h-4 text-green-500" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Delivery Completed</p>
+                    <p className="text-xs text-gray-500 mt-0.5">SH-2024-001244 delivered successfully to Hyderabad</p>
+                    <p className="text-xs text-green-500 font-medium mt-1">3 hours ago</p>
+                  </div>
                 </div>
-                <RxCross1 className="w-4 h-4 text-green-500 cursor-pointer transition flex-shrink-0 ml-2" />
+                <RxCross1 className="w-4 h-4 text-green-400 hover:text-green-600 cursor-pointer flex-shrink-0 mt-1" />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Driver Performance Dashboard - Removed ml-8 and m-4 */}
+        {/* Driver Performance Dashboard */}
         <div className="bg-white p-4 border border-gray-300 rounded-md shadow-sm">
           <h1 className="font-bold text-xl text-gray-800 mb-4 tracking-wide">
             Driver Performance Dashboard
@@ -622,4 +729,4 @@ function Shipments() {
   );
 }
 
-export default Shipments
+export default Shipments;
