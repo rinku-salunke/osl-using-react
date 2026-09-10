@@ -219,7 +219,7 @@ const getStatusClass = (status) => {
 function Warehouse() {
   return (
     <div>
-      <header className="border-b border-gray-200 pb-2 flex justify-between bg-white px-4">
+      <header className="border-b border-gray-200 pb-2 flex justify-between bg-white px-4 sticky top-0 z-50">
         <div className="flex flex-col">
           <h1 className="font-bold text-lg">Warehouse Operations</h1>
           <span className="text-sm text-gray-600">manage inventory picking, packing and warehouse tasks</span>
@@ -473,22 +473,22 @@ function Warehouse() {
             </div>
           </div>
 
-         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
-  {performanceMetrics.map((metric, index) => (
-    <div 
-      key={index} 
-      className={`${metric.bg} rounded-md p-4 border border-gray-200 shadow-sm flex flex-col items-center justify-center`}
-    >
-      <div className={`text-2xl font-bold ${metric.textColor} text-center`}>{metric.value}</div>
-      <div className="text-xs font-medium text-gray-600 mt-1 text-center">{metric.title}</div>
-      <div className={`flex items-center justify-center gap-1 text-xs font-medium mt-2 ${metric.changeColor}`}>
-        {metric.changeType === 'up' && <FiArrowUp size={12} />}
-        {metric.changeType === 'down' && <FiArrowDown size={12} />}
-        {metric.change}
-      </div>
-    </div>
-  ))}
-</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
+            {performanceMetrics.map((metric, index) => (
+              <div
+                key={index}
+                className={`${metric.bg} rounded-md p-4 border border-gray-200 shadow-sm flex flex-col items-center justify-center`}
+              >
+                <div className={`text-2xl font-bold ${metric.textColor} text-center`}>{metric.value}</div>
+                <div className="text-xs font-medium text-gray-600 mt-1 text-center">{metric.title}</div>
+                <div className={`flex items-center justify-center gap-1 text-xs font-medium mt-2 ${metric.changeColor}`}>
+                  {metric.changeType === 'up' && <FiArrowUp size={12} />}
+                  {metric.changeType === 'down' && <FiArrowDown size={12} />}
+                  {metric.change}
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
       </main>
     </div>

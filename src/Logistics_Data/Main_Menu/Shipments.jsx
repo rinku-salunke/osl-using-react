@@ -139,7 +139,7 @@ function Shipments() {
   return (
     <div>
       {/* Header */}
-      <div className="bg-white border-b border-gray-300 flex justify-between items-center px-4 py-3">
+      <div className="bg-white border-b border-gray-300 flex justify-between items-center px-4 py-3 sticky top-0 z-50">
         <div className="flex flex-col">
           <h1 className="font-bold text-black text-lg">Vehicle & Gate Pass Management</h1>
           <span className="text-sm text-gray-600">Manage fleet vehicles, gate passes, and vehicle documentation.</span>

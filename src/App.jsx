@@ -25,7 +25,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
+          {/* 
+            By adding this index route, opening the app at 
+            "localhost:3000/" will automatically show the Dashboard.
+          */}
+          <Route index element={<Dashboard />} />
+
+          {/* Keep this so that navigating to "/dashboard" also works */}
           <Route path='dashboard' element={<Dashboard />} />
+
           <Route path="orders" element={<Orders />} />
           <Route path="warehouse" element={<Warehouse />} />
           <Route path='shipments' element={<Shipments />} />

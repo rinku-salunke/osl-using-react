@@ -1,6 +1,30 @@
 import React from 'react';
 import { IoMdAdd } from "react-icons/io";
-import { FaTruck, FaCircleCheck, FaScrewdriverWrench, FaTicket, FaBell, FaBars, FaChevronDown, FaPenToSquare, FaTrash, FaEye, FaFilter } from "react-icons/fa6";
+import {
+  FaTruck,
+  FaCircleCheck,
+  FaScrewdriverWrench,
+  FaTicket,
+  FaBell,
+  FaBars,
+  FaChevronDown,
+  FaPenToSquare,
+  FaTrash,
+  FaEye,
+  FaShareFromSquare,
+  FaCheck,
+  FaXmark,
+  FaPlay,
+  FaArrowsRotate,
+  FaPrint,
+  FaFilePdf,
+  FaFileImage,
+  FaFileLines,
+  FaShieldHalved,
+  FaFileSignature,
+  FaIdCard,
+  FaDownload
+} from "react-icons/fa6";
 import { MdOutlineQrCodeScanner, MdOutlineSystemSecurityUpdateGood } from "react-icons/md";
 import { HiOutlineCalendarDateRange } from "react-icons/hi2";
 import { RiFolderUploadLine } from "react-icons/ri";
@@ -8,7 +32,7 @@ import { HiOutlineDocumentReport } from "react-icons/hi";
 
 function GatePass() {
 
-  // Updated mock data to match the Figma screenshot more closely
+  // Data for the Vehicle Fleet Table
   const vehicleData = [
     {
       id: "TRK-001",
@@ -35,7 +59,7 @@ function GatePass() {
       driverName: "Amit Singh",
       driverPhone: "+91 98765 43211",
       status: "Available",
-      route: "Delhi → Jaipur",
+      route: "Ready for dispatch",
       currentStop: "Delhi Warehouse",
       lastUpdated: "2 hours ago",
       nextServiceDate: "Feb 10, 2024",
@@ -51,8 +75,8 @@ function GatePass() {
       capacity: "2.5T",
       driverName: "Suresh Raman",
       driverPhone: "9876543212",
-      status: "Scheduled Service",
-      route: "Chennai → Bangalore",
+      status: "Maintenance",
+      route: "Scheduled service",
       currentStop: "Vellore, Tamil Nadu",
       lastUpdated: "Yesterday",
       nextServiceDate: "Dec 28, 2023",
@@ -68,8 +92,8 @@ function GatePass() {
       capacity: "4.0T",
       driverName: "Vikram Joshi",
       driverPhone: "9876543213",
-      status: "In Transit",
-      route: "Bangalore → Hyderabad",
+      status: "Loading",
+      route: "Bangalore warehouse",
       currentStop: "Kurnool, Andhra Pradesh",
       lastUpdated: "1 hour ago",
       nextServiceDate: "Feb 15, 2024",
@@ -85,8 +109,8 @@ function GatePass() {
       capacity: "2.0T",
       driverName: "Kiran Patel",
       driverPhone: "9876543214",
-      status: "Scheduled Service",
-      route: "Ahmedabad → Mumbai",
+      status: "Out of Service",
+      route: "Accident repair",
       currentStop: "Surat, Gujarat",
       lastUpdated: "3 hours ago",
       nextServiceDate: "Jan 30, 2024",
@@ -97,19 +121,80 @@ function GatePass() {
     },
   ];
 
-  // Helper for Status Badges
-  const getStatusBadge = (status) => {
-    switch (status) {
-      case 'In Transit':
-        return 'bg-blue-100 text-blue-800';
-      case 'Available':
-        return 'bg-green-100 text-green-800';
-      case 'Scheduled Service':
-        return 'bg-yellow-100 text-yellow-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
+  // Data for the Gate Pass Queue
+  const gatePassData = [
+    {
+      id: "GP-2024-001",
+      vehicle: "TRK-001",
+      driver: "Raj Kumar",
+      detail: "Valid until: Today 6:00 PM",
+      status: "Active",
+      statusDetail: "Exit: Pending",
+      iconBg: "bg-green-100",
+      iconColor: "text-green-600",
+      icon: <FaTicket size={18} />,
+      actions: [
+        { icon: <FaEye size={16} />, color: "text-blue-600" },
+        { icon: <FaShareFromSquare size={16} />, color: "text-green-600" },
+        { icon: <FaPrint size={16} />, color: "text-gray-600" },
+      ]
+    },
+    {
+      id: "GP-2024-002",
+      vehicle: "TRK-004",
+      driver: "Vikram Joshi",
+      detail: "Requested: 2 hours ago",
+      status: "Pending Approval",
+      statusDetail: "Priority: High",
+      iconBg: "bg-orange-100",
+      iconColor: "text-orange-600",
+      icon: <FaTicket size={18} />,
+      actions: [
+        { icon: <FaCheck size={16} />, color: "text-green-600" },
+        { icon: <FaXmark size={16} />, color: "text-red-600" },
+        { icon: <FaEye size={16} />, color: "text-blue-600" },
+      ]
+    },
+    {
+      id: "GP-2024-003",
+      vehicle: "TRK-002",
+      driver: "Amit Singh",
+      detail: "Valid: Tomorrow 8:00 AM - 8:00 PM",
+      status: "Approved",
+      statusDetail: "Ready for use",
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
+      icon: <FaTicket size={18} />,
+      actions: [
+        { icon: <FaEye size={16} />, color: "text-blue-600" },
+        { icon: <FaPlay size={16} />, color: "text-green-600" },
+        { icon: <FaPrint size={16} />, color: "text-gray-600" },
+      ]
+    },
+    {
+      id: "GP-2024-004",
+      vehicle: "TRK-003",
+      driver: "Suresh Raman",
+      detail: "Expired: Yesterday 6:00 PM",
+      status: "Completed",
+      statusDetail: "Duration: 8 hours",
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600",
+      icon: <FaTicket size={18} />,
+      actions: [
+        { icon: <FaArrowsRotate size={16} />, color: "text-blue-600" },
+        { icon: <FaPrint size={16} />, color: "text-gray-600" },
+      ]
     }
-  };
+  ];
+
+  // Data for Document Management Cards
+  const documentCards = [
+    { title: "Registration", subtitle: "RC Documents", icon: <FaFileLines size={20} />, bg: "bg-blue-50", color: "text-blue-600" },
+    { title: "Insurance", subtitle: "Policy Documents", icon: <FaShieldHalved size={20} />, bg: "bg-green-50", color: "text-green-600" },
+    { title: "PUC", subtitle: "Emission Certificates", icon: <FaFileSignature size={20} />, bg: "bg-orange-50", color: "text-orange-600" },
+    { title: "Driver License", subtitle: "License Documents", icon: <FaIdCard size={20} />, bg: "bg-purple-50", color: "text-purple-600" },
+  ];
 
   return (
     <div className="flex flex-col h-screen bg-gray-50 overflow-hidden font-sans">
@@ -118,7 +203,7 @@ function GatePass() {
       <main className="flex-1 flex flex-col overflow-hidden">
 
         {/* Top Navbar */}
-        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0">
+        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0 sticky top-0 z-50">
           <div className="flex items-center gap-4">
             <button className="md:hidden text-gray-500 hover:text-gray-700">
               <FaBars size={20} />
@@ -126,7 +211,6 @@ function GatePass() {
             <div className='flex flex-col'>
               <span className="font-semibold text-gray-800 hidden sm:block">Vehicle & Gate Pass Management</span>
               <span className="text-sm text-gray-500">Manage fleet vehicles, gate passes, and vehicle documentation.</span>
-
             </div>
           </div>
           <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -144,11 +228,8 @@ function GatePass() {
         {/* Scrollable Page Content */}
         <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 bg-gray-50">
 
-
           {/* ---------- STATS CARDS ---------- */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-
-            {/* Card 1: Total Fleet */}
             <div className="border border-gray-300 rounded-md p-5 bg-white flex items-center justify-between shadow-sm">
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-gray-500 font-medium tracking-wide">Total Fleet</span>
@@ -163,7 +244,6 @@ function GatePass() {
               </div>
             </div>
 
-            {/* Card 2: Available Vehicles */}
             <div className="border border-gray-300 rounded-md p-5 bg-white flex items-center justify-between shadow-sm">
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-gray-500 font-medium tracking-wide">Available Vehicles</span>
@@ -178,7 +258,6 @@ function GatePass() {
               </div>
             </div>
 
-            {/* Card 3: In Maintenance */}
             <div className="border border-gray-300 rounded-md p-5 bg-white flex items-center justify-between shadow-sm">
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-gray-500 font-medium tracking-wide">In Maintenance</span>
@@ -193,7 +272,6 @@ function GatePass() {
               </div>
             </div>
 
-            {/* Card 4: Gate Pass Today */}
             <div className="border border-gray-300 rounded-md p-5 bg-white flex items-center justify-between shadow-sm">
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-gray-500 font-medium tracking-wide">Gate Pass Today</span>
@@ -234,14 +312,10 @@ function GatePass() {
 
           {/* ---------- VEHICLE FLEET TABLE ---------- */}
           <div className="bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden">
-            {/* Table Header */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-300 px-4 py-3 bg-white gap-3">
               <span className="font-semibold text-black text-lg">Vehicle Fleet</span>
               <div className="flex items-center gap-3">
-                {/* Filter Label */}
                 <span className="text-sm text-gray-500 font-medium whitespace-nowrap">Filter by Status:</span>
-
-                {/* Custom Dropdown */}
                 <div className="relative">
                   <select className="appearance-none bg-white border border-gray-300 rounded-md pl-3 pr-8 py-1.5 text-sm font-medium text-gray-800 focus:outline-none cursor-pointer">
                     <option>All Vehicles</option>
@@ -251,8 +325,6 @@ function GatePass() {
                   </select>
                   <FaChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={12} />
                 </div>
-
-                {/* Add Vehicle Button */}
                 <button className="bg-dark-navy-blue text-white px-4 py-1.5 rounded-md text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-1.5">
                   <IoMdAdd className="text-base" />
                   Add Vehicle
@@ -260,7 +332,6 @@ function GatePass() {
               </div>
             </div>
 
-            {/* Table Body */}
             <div className="overflow-x-auto">
               <table className="w-full text-sm min-w-[800px]">
                 <thead className="bg-gray-50 border-b border-gray-300">
@@ -276,7 +347,6 @@ function GatePass() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {vehicleData.map((vehicle, index) => (
                     <tr key={index} className="hover:bg-gray-50 transition">
-                      {/* Vehicle Details Column */}
                       <td className="px-4 py-4 whitespace-nowrap">
                         <div className="inline-flex items-center gap-3">
                           <span className={`inline-flex items-center justify-center rounded-md ${vehicle.truckBg} h-10 w-10`}>
@@ -294,7 +364,6 @@ function GatePass() {
                         </div>
                       </td>
 
-                      {/* Driver Column with Image */}
                       <td className="px-4 py-4 whitespace-nowrap">
                         <div className="flex items-center gap-3">
                           <img
@@ -309,17 +378,17 @@ function GatePass() {
                         </div>
                       </td>
 
-                      {/* Status Column */}
                       <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="flex flex-col gap-1">
-                          <span className={`inline-flex px-2 py-1 rounded-full text-xs font-semibold w-fit ${getStatusBadge(vehicle.status)}`}>
+                        <div className="flex flex-col">
+                          <span className="text-sm font-semibold text-gray-900">
                             {vehicle.status}
                           </span>
-                          <span className="text-xs text-gray-500">{vehicle.route}</span>
+                          <span className="text-xs text-gray-500 mt-1">
+                            {vehicle.route}
+                          </span>
                         </div>
                       </td>
 
-                      {/* Current Location Column */}
                       <td className="px-4 py-4 whitespace-nowrap">
                         <div className="flex flex-col">
                           <span className="text-sm text-black">{vehicle.currentStop}</span>
@@ -329,7 +398,6 @@ function GatePass() {
                         </div>
                       </td>
 
-                      {/* Next Service Column */}
                       <td className="px-4 py-4 whitespace-nowrap">
                         <div className="flex flex-col">
                           <span className="text-sm text-gray-800">{vehicle.nextServiceDate}</span>
@@ -344,19 +412,16 @@ function GatePass() {
                         </div>
                       </td>
 
-                      {/* Actions Column with Vertical Dividers */}
                       <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <button className="text-gray-400 hover:text-blue-600 transition px-2" title="Edit">
+                        <div className="flex items-center gap-3">
+                          <button className="text-blue-600 hover:text-blue-800 transition" title="View">
+                            <FaEye size={16} />
+                          </button>
+                          <button className="text-orange-500 hover:text-orange-700 transition" title="Edit">
                             <FaPenToSquare size={16} />
                           </button>
-                          <span className="text-gray-300">|</span>
-                          <button className="text-gray-400 hover:text-red-600 transition px-2" title="Delete">
+                          <button className="text-red-600 hover:text-red-800 transition" title="Delete">
                             <FaTrash size={16} />
-                          </button>
-                          <span className="text-gray-300">|</span>
-                          <button className="text-gray-400 hover:text-gray-800 transition px-2" title="View">
-                            <FaEye size={16} />
                           </button>
                         </div>
                       </td>
@@ -366,7 +431,6 @@ function GatePass() {
               </table>
             </div>
 
-            {/* Pagination */}
             <div className="flex flex-col sm:flex-row items-center justify-between px-4 py-3 border-t border-gray-200 bg-gray-50 gap-3">
               <span className="text-sm text-gray-500">Showing 1 to 5 of 247 results</span>
               <div className="flex items-center gap-1">
@@ -383,39 +447,51 @@ function GatePass() {
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Gate Pass Queue */}
             <div className="bg-white border border-gray-300 rounded-md p-4 flex-[2] shadow-sm">
-              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+              <div className="flex justify-between items-center pb-4 border-b border-gray-200">
+                <span className="font-semibold text-gray-800 text-lg">Gate Pass Queue</span>
                 <div className="flex items-center gap-3">
-                  <span className="font-semibold text-gray-800">Gate Pass Queue</span>
-                  <span className="text-sm text-blue-600 bg-blue-50 px-3 py-1 rounded-full font-medium">
-                    All Passes
-                  </span>
+                  <div className="relative">
+                    <select className="appearance-none bg-white border border-gray-300 rounded-md pl-3 pr-8 py-1.5 text-sm font-medium text-gray-800 focus:outline-none cursor-pointer">
+                      <option>All Passes</option>
+                      <option>Active</option>
+                      <option>Pending</option>
+                      <option>Approved</option>
+                      <option>Completed</option>
+                    </select>
+                    <FaChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={12} />
+                  </div>
+                  <button className="px-3 py-1.5 bg-dark-navy-blue text-white text-sm rounded-md flex items-center gap-1.5 hover:opacity-90 transition">
+                    <IoMdAdd size={16} />
+                    New Pass
+                  </button>
                 </div>
-                <button className="px-3 py-1.5 bg-dark-navy-blue text-white text-sm rounded-md flex items-center gap-1 hover:opacity-90 transition">
-                  <IoMdAdd size={16} />
-                  New Pass
-                </button>
               </div>
 
               <div className="mt-3 space-y-3">
-                {[
-                  { id: 'GP-2024-001', vehicle: 'TRK-001', driver: 'Raj Kumar', detail: 'Valid until: Today 6:00 PM', badge: 'Active', badgeColor: 'bg-green-100 text-green-800', extra: 'Exit: Pending' },
-                  { id: 'GP-2024-002', vehicle: 'TRK-004', driver: 'Vikram Joshi', detail: 'Requested: 2 hours ago', badge: 'Pending', badgeColor: 'bg-yellow-100 text-yellow-800', extra: 'Priority: High' },
-                  { id: 'GP-2024-003', vehicle: 'TRK-002', driver: 'Amit Singh', detail: 'Valid: Tomorrow 8:00 AM - 8:00 PM', badge: 'Approved', badgeColor: 'bg-blue-100 text-blue-800', extra: 'Ready for use' },
-                  { id: 'GP-2024-004', vehicle: 'TRK-003', driver: 'Suresh Raman', detail: 'Expired: Yesterday 6:00 PM', badge: 'Expired', badgeColor: 'bg-red-100 text-red-800', extra: 'Duration: 8 hours' },
-                ].map((pass) => (
-                  <div key={pass.id} className="border border-gray-200 rounded-md p-3 hover:bg-gray-50 transition">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <div className="flex items-center gap-3">
-                          <span className="font-medium text-gray-800 text-sm">{pass.id}</span>
-                          <span className="text-xs text-gray-500">{pass.vehicle} • {pass.driver}</span>
-                        </div>
-                        <div className="text-xs text-gray-600 mt-1">{pass.detail}</div>
-                        {pass.extra && <div className="text-xs text-gray-500 mt-0.5">{pass.extra}</div>}
+                {gatePassData.map((pass) => (
+                  <div key={pass.id} className="flex items-center justify-between border border-gray-200 rounded-md p-3 hover:bg-gray-50 transition">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-3 rounded-lg ${pass.iconBg} ${pass.iconColor}`}>
+                        {pass.icon}
                       </div>
-                      <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${pass.badgeColor}`}>
-                        {pass.badge}
-                      </span>
+                      <div className="flex flex-col">
+                        <span className="font-semibold text-gray-800 text-sm">{pass.id}</span>
+                        <span className="text-xs text-gray-600 mt-0.5">{pass.vehicle} • {pass.driver}</span>
+                        <span className="text-xs text-gray-400 mt-0.5">{pass.detail}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="text-sm font-semibold text-gray-800">{pass.status}</span>
+                      <span className="text-xs text-gray-500 mt-1">{pass.statusDetail}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      {pass.actions.map((action, i) => (
+                        <button key={i} className={`${action.color} hover:opacity-80 transition`}>
+                          {action.icon}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 ))}
@@ -424,30 +500,33 @@ function GatePass() {
 
             {/* Gate Scanner */}
             <div className="bg-white border border-gray-300 rounded-md p-4 flex-1 shadow-sm">
-              <h3 className="font-semibold text-gray-800">Gate Scanner</h3>
+              <h3 className="font-semibold text-gray-800 text-lg">Gate Scanner</h3>
+
               <div className="mt-3 border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center bg-gray-50">
-                <MdOutlineQrCodeScanner className="h-16 w-16 text-gray-400" />
+                <div className="p-4 border border-gray-300 rounded-lg mb-2">
+                  <MdOutlineQrCodeScanner className="h-10 w-10 text-gray-400" />
+                </div>
                 <span className="text-sm text-gray-500 mt-2 text-center">Position QR code within the frame</span>
-                <button className="mt-3 px-4 py-1.5 bg-dark-navy-blue text-white text-sm rounded-md hover:opacity-90 transition">
+                <button className="mt-3 px-4 py-1.5 bg-dark-navy-blue text-white text-sm rounded-md hover:opacity-90 transition w-full">
                   Start Scanner
                 </button>
               </div>
 
-              <div className="mt-4">
+              <div className="mt-5">
                 <h4 className="text-sm font-medium text-gray-700">Manual Entry</h4>
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center gap-2 mt-2">
                   <input
                     type="text"
                     placeholder="Enter Gate Pass ID"
                     className="flex-1 border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                   />
-                  <button className="px-3 py-1.5 bg-dark-navy-blue text-white text-sm rounded-md hover:opacity-90 transition whitespace-nowrap">
+                  <button className="px-3 py-1.5 bg-green-700 text-white text-sm rounded-md hover:bg-green-800 transition whitespace-nowrap">
                     Lookup Pass
                   </button>
                 </div>
               </div>
 
-              <div className="mt-4">
+              <div className="mt-5">
                 <h4 className="text-sm font-medium text-gray-700">Recent Scans</h4>
                 <div className="mt-2 border border-gray-200 rounded-md overflow-hidden">
                   <table className="w-full text-sm">
@@ -483,47 +562,75 @@ function GatePass() {
 
           {/* ---------- DOCUMENT MANAGEMENT & MAINTENANCE ---------- */}
           <div className="flex flex-col lg:flex-row gap-4">
-            {/* Left column */}
+            {/* Left column - Document Management */}
             <div className="bg-white border border-gray-300 p-4 rounded-md flex-1 shadow-sm">
-              <div className="flex justify-between items-center">
-                <span className="font-semibold text-gray-800">Document Management</span>
-                <button className="px-3 py-1.5 border border-gray-300 rounded-md bg-dark-navy-blue text-white inline-flex items-center gap-2 text-sm hover:opacity-90 transition">
+              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                <span className="font-semibold text-gray-800 text-lg">Document Management</span>
+                <button className="px-3 py-1.5 border border-gray-300 rounded-md bg-blue-700 text-white inline-flex items-center gap-2 text-sm hover:bg-blue-800 transition">
                   <RiFolderUploadLine size={16} />
                   Upload Document
                 </button>
               </div>
 
-              <ul className="mt-4 grid grid-cols-2 gap-3">
-                {['Registration', 'Insurance', 'PUC', 'Driver License'].map((doc, idx) => (
-                  <li key={idx} className="w-full">
-                    <div className="h-20 bg-white border border-gray-300 rounded-md p-3 flex flex-col items-center justify-center hover:bg-gray-50 transition cursor-pointer">
-                      <span className="font-medium text-gray-800 text-sm">{doc}</span>
-                      <span className="text-xs text-gray-500 mt-1">
-                        {doc === 'Registration' ? 'RC Documents' : doc === 'Insurance' ? 'Policy Documents' : doc === 'PUC' ? 'Emission Certificates' : 'License Documents'}
-                      </span>
+              {/* Document Cards Grid */}
+              <div className="mt-4 grid grid-cols-2 gap-4">
+                {documentCards.map((doc, idx) => (
+                  <div key={idx} className="h-24 bg-white border border-gray-300 rounded-md p-3 flex flex-col items-center justify-center hover:bg-gray-50 transition cursor-pointer">
+                    <div className={`p-2 rounded-lg ${doc.bg} ${doc.color} mb-2`}>
+                      {doc.icon}
                     </div>
-                  </li>
+                    <span className="font-medium text-gray-800 text-sm">{doc.title}</span>
+                    <span className="text-xs text-gray-500 mt-0.5">{doc.subtitle}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
 
+              {/* Recent Uploads */}
               <div className="mt-6 pt-4 border-t border-gray-200">
                 <h4 className="text-sm font-semibold text-gray-800 mb-3">Recent Uploads</h4>
-                <div className="space-y-2">
-                  <div className="flex flex-col border border-gray-300 p-3 rounded-md bg-gray-50">
-                    <span className="text-gray-700 text-sm font-medium">TRK-001_Insurance.pdf</span>
-                    <span className="text-gray-400 text-xs mt-0.5">Uploaded 2 hours ago</span>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between border border-gray-200 p-3 rounded-md bg-gray-50">
+                    <div className="flex items-center gap-3">
+                      <FaFilePdf size={20} className="text-red-600" />
+                      <div className="flex flex-col">
+                        <span className="text-gray-800 text-sm font-medium">TRK-001_Insurance.pdf</span>
+                        <span className="text-gray-400 text-xs mt-0.5">Uploaded 2 hours ago</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button className="text-blue-600 hover:text-blue-800 transition"><FaPenToSquare size={14} /></button>
+                      <button className="text-green-600 hover:text-green-800 transition"><FaDownload size={14} /></button>
+                    </div>
                   </div>
-                  <div className="flex flex-col border border-gray-300 p-3 rounded-md bg-gray-50">
-                    <span className="text-gray-700 text-sm font-medium">TRK-002_PUC_Certificate.jpg</span>
-                    <span className="text-gray-400 text-xs mt-0.5">Uploaded yesterday</span>
+
+                  <div className="flex items-center justify-between border border-gray-200 p-3 rounded-md bg-gray-50">
+                    <div className="flex items-center gap-3">
+                      <FaFileImage size={20} className="text-blue-600" />
+                      <div className="flex flex-col">
+                        <span className="text-gray-800 text-sm font-medium">TRK-002_PUC_Certificate.jpg</span>
+                        <span className="text-gray-400 text-xs mt-0.5">Uploaded yesterday</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button className="text-blue-600 hover:text-blue-800 transition"><FaPenToSquare size={14} /></button>
+                      <button className="text-green-600 hover:text-green-800 transition"><FaDownload size={14} /></button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right column */}
+            {/* Right column - Maintenance Schedule */}
             <div className="bg-white border border-gray-300 p-4 rounded-md flex-1 shadow-sm">
-              <h3 className="font-semibold text-gray-800">Maintenance Schedule</h3>
+              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                <h3 className="font-semibold text-gray-800 text-lg">Maintenance Schedule</h3>
+                <button className="px-3 py-1.5 border border-gray-300 rounded-md bg-orange-500 text-white inline-flex items-center gap-2 text-sm hover:bg-orange-600 transition">
+                  <HiOutlineCalendarDateRange size={16} />
+                  Schedule Service
+                </button>
+              </div>
+
+              {/* Calendar */}
               <div className="mt-4">
                 <div className="grid grid-cols-7 text-xs text-center font-medium text-gray-500 mb-2">
                   {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
@@ -532,30 +639,39 @@ function GatePass() {
                 </div>
                 <div className="grid grid-cols-7 gap-y-2 text-xs text-center">
                   {[28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31].map((d, i) => (
-                    <div key={i} className={`py-1 flex items-center justify-center mx-auto w-8 h-8 rounded-full ${d === 25 ? 'bg-red-100 text-red-600 font-bold' : d === 10 ? 'bg-blue-100 text-blue-600 font-bold' : 'hover:bg-gray-100'}`}>
+                    <div key={i} className={`py-1 flex items-center justify-center mx-auto w-8 h-8 rounded-full ${d === 15 ? 'bg-blue-700 text-white font-bold' : d === 25 ? 'bg-red-100 text-red-600 font-bold' : 'hover:bg-gray-100'}`}>
                       {d}
                     </div>
                   ))}
                 </div>
               </div>
 
+              {/* Upcoming Services */}
               <div className="mt-6 pt-4 border-t border-gray-200">
                 <h4 className="font-semibold text-gray-800 text-sm mb-3">Upcoming Services</h4>
                 <div className="space-y-3">
-                  <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded text-xs">
-                    <div className="font-medium text-red-700">TRK-003 Service Overdue</div>
-                    <div className="text-gray-600 mt-0.5">3 days overdue • Engine oil change</div>
-                    <span className="inline-block bg-red-100 text-red-800 px-2 py-0.5 rounded mt-1.5 text-[10px] font-bold">Urgent</span>
+                  <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded text-xs flex justify-between items-center">
+                    <div>
+                      <div className="font-medium text-red-700">TRK-003 Service Overdue</div>
+                      <div className="text-gray-600 mt-0.5">3 days overdue • Engine oil change</div>
+                    </div>
+                    <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded text-[10px] font-bold">Urgent</span>
                   </div>
-                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-3 rounded text-xs">
-                    <div className="font-medium text-yellow-800">TRK-001 Scheduled Service</div>
-                    <div className="text-gray-600 mt-0.5">Due: Jan 25 • General maintenance</div>
-                    <span className="inline-block bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded mt-1.5 text-[10px] font-bold">Soon</span>
+
+                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-3 rounded text-xs flex justify-between items-center">
+                    <div>
+                      <div className="font-medium text-yellow-800">TRK-001 Scheduled Service</div>
+                      <div className="text-gray-600 mt-0.5">Due: Jan 25 • General maintenance</div>
+                    </div>
+                    <span className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded text-[10px] font-bold">Soon</span>
                   </div>
-                  <div className="bg-blue-50 border-l-4 border-blue-500 p-3 rounded text-xs">
-                    <div className="font-medium text-blue-800">TRK-004 Routine Check</div>
-                    <div className="text-gray-600 mt-0.5">Due: Feb 10 • Tire inspection</div>
-                    <span className="inline-block bg-blue-100 text-blue-800 px-2 py-0.5 rounded mt-1.5 text-[10px] font-bold">Planned</span>
+
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-3 rounded text-xs flex justify-between items-center">
+                    <div>
+                      <div className="font-medium text-blue-800">TRK-004 Routine Check</div>
+                      <div className="text-gray-600 mt-0.5">Due: Feb 10 • Tire inspection</div>
+                    </div>
+                    <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-[10px] font-bold">Planned</span>
                   </div>
                 </div>
               </div>
