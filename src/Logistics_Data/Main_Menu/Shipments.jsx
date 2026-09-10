@@ -14,7 +14,12 @@ import { LuTimer } from "react-icons/lu";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoWarning, IoAlertCircle } from "react-icons/io5";
 import { FaRoute } from "react-icons/fa";
-
+import {
+  FiPhone,
+  FiMapPin,
+  FiPlus,
+  FiUser
+} from "react-icons/fi";
 // Icons for Actions column
 import { GrView } from "react-icons/gr";
 import { VscLocation } from "react-icons/vsc";
@@ -150,7 +155,7 @@ function Shipments() {
       </div>
 
       <div className="bg-gray-50 min-h-screen p-4 space-y-4">
-        
+
         {/* Stats Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="border border-gray-300 rounded-md p-4 bg-white h-28 w-full relative">
@@ -431,7 +436,7 @@ function Shipments() {
                           <button className="text-blue-800 hover:text-blue-900 transition">
                             <GrView className="w-5 h-5" />
                           </button>
-                          
+
                           {shipment.status === 'In Transit' || shipment.status === 'Out for Delivery' ? (
                             <button className="text-gray-600 hover:text-gray-800 transition">
                               <VscLocation className="w-5 h-5" />
@@ -477,10 +482,9 @@ function Shipments() {
               <h3 className="font-semibold text-gray-700 text-sm tracking-wider">
                 Route Performance
               </h3>
-              
-              {/* ✅ UPDATED DROPDOWN HERE */}
+
               <div className="relative inline-block">
-                <select className="appearance-none bg-white border border-gray-200 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer shadow-sm">
+                <select className="appearance-none bg-white border border-gray-200 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer">
                   <option>Last 7 Days</option>
                   <option>Last 30 Days</option>
                   <option>This Month</option>
@@ -490,47 +494,42 @@ function Shipments() {
                   <IoIosArrowDown className="w-4 h-4" />
                 </div>
               </div>
-              
             </div>
 
             <div className="space-y-3">
-              <div className="flex justify-between items-start bg-gray-50 rounded-md p-2">
+              <div className="flex justify-between items-center bg-gray-50 rounded-md p-2">
                 <div>
                   <span className="text-sm font-medium text-gray-800">Mumbai → Delhi</span>
-                  <p className="text-xs text-gray-400">On-time rate</p>
+                  <p className="text-xs text-gray-400">24 Deliveries this week</p>
                 </div>
-                <span className="text-sm font-bold text-green-600">98.2%</span>
+                <span className="text-sm font-bold text-green-600 shrink-0">98.2%</span>
               </div>
 
-              <div className="flex justify-between items-start bg-gray-50 rounded-md p-2">
+              <div className="flex justify-between items-center bg-gray-50 rounded-md p-2">
                 <div>
                   <span className="text-sm font-medium text-gray-800">Delhi → Kolkata</span>
                   <p className="text-xs text-gray-400">18 deliveries this week</p>
-                  <p className="text-xs text-gray-400">On-time rate</p>
                 </div>
-                <span className="text-sm font-bold text-green-600">95.8%</span>
+                <span className="text-sm font-bold text-green-600 shrink-0">95.8%</span>
               </div>
 
-              <div className="flex justify-between items-start bg-gray-50 rounded-md p-2">
+              <div className="flex justify-between items-center bg-gray-50 rounded-md p-2">
                 <div>
                   <span className="text-sm font-medium text-gray-800">Chennai → Bangalore</span>
                   <p className="text-xs text-gray-400">32 deliveries this week</p>
-                  <p className="text-xs text-gray-400">On-time rate</p>
                 </div>
-                <span className="text-sm font-bold text-yellow-600">87.5%</span>
+                <span className="text-sm font-bold text-yellow-600 shrink-0">87.5%</span>
               </div>
 
-              <div className="flex justify-between items-start bg-gray-50 rounded-md p-2">
+              <div className="flex justify-between items-center bg-gray-50 rounded-md p-2">
                 <div>
                   <span className="text-sm font-medium text-gray-800">Pune → Hyderabad</span>
                   <p className="text-xs text-gray-400">15 deliveries this week</p>
-                  <p className="text-xs text-gray-400">On-time rate</p>
                 </div>
-                <span className="text-sm font-bold text-green-600">96.1%</span>
+                <span className="text-sm font-bold text-green-600 shrink-0">96.1%</span>
               </div>
             </div>
           </div>
-
           {/* Delivery Alerts */}
           <div className="bg-white border border-gray-300 p-4 rounded-md flex-1">
             <div className="flex justify-between items-center mb-4">
@@ -627,18 +626,25 @@ function Shipments() {
                   <h3 className="font-semibold text-gray-800 text-md">Raj Kumar</h3>
                 </div>
               </div>
+
               <div className="mt-2 space-y-1">
                 <p className="text-sm flex justify-between"><span className="text-gray-500">Deliveries:</span> <span className="font-medium">47</span></p>
                 <p className="text-sm flex justify-between"><span className="text-gray-500">On-time Rate:</span> <span className="font-medium text-green-600">98.2%</span></p>
-                <p className="text-sm flex justify-between"> <span className="text-gray-500">Rating:</span>
-                  <span className="font-medium">
-                    <span className="text-yellow-500">★</span> 4.3
-                  </span></p>
+                <p className="text-sm flex justify-between">
+                  <span className="text-gray-500">Rating:</span>
+                  <span className="font-medium"><span className="text-yellow-500">★</span> 4.3</span>
+                </p>
                 <p className="text-sm flex justify-between"><span className="text-gray-500">Status</span> <span className="font-bold">On Route</span></p>
               </div>
-              <button className="mt-3 bg-dark-navy-blue text-white text-sm py-1.5 rounded-md transition w-full">
-                📞 Call
-              </button>
+
+              <div className="mt-3 flex gap-2">
+                <button className="flex-1 bg-dark-navy-blue hover:bg-blue-700 text-white text-sm py-1.5 rounded-md transition flex items-center justify-center gap-2">
+                  <FiPhone className="w-4 h-4" /> Call
+                </button>
+                <button className="w-9 border border-gray-200 rounded-md flex items-center justify-center text-gray-500 hover:bg-gray-50 transition">
+                  <FiMapPin className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Amit Singh */}
@@ -654,18 +660,25 @@ function Shipments() {
                   <h3 className="font-semibold text-gray-800 text-md">Amit Singh</h3>
                 </div>
               </div>
+
               <div className="mt-2 space-y-1">
                 <p className="text-sm flex justify-between"><span className="text-gray-500">Deliveries:</span> <span className="font-medium">52</span></p>
                 <p className="text-sm flex justify-between"><span className="text-gray-500">On-time Rate:</span> <span className="font-medium text-green-600">95.8%</span></p>
-                <p className="text-sm flex justify-between"> <span className="text-gray-500">Rating:</span>
-                  <span className="font-medium">
-                    <span className="text-yellow-500">★</span> 4.3
-                  </span></p>
+                <p className="text-sm flex justify-between">
+                  <span className="text-gray-500">Rating:</span>
+                  <span className="font-medium"><span className="text-yellow-500">★</span> 4.6</span>
+                </p>
                 <p className="text-sm flex justify-between"><span className="text-gray-500">Status</span> <span className="font-bold">Delivering</span></p>
               </div>
-              <button className="mt-3 bg-dark-navy-blue hover:bg-blue-700 text-white text-sm py-1.5 rounded-md transition w-full">
-                📞 Call
-              </button>
+
+              <div className="mt-3 flex gap-2">
+                <button className="flex-1 bg-dark-navy-blue hover:bg-blue-700 text-white text-sm py-1.5 rounded-md transition flex items-center justify-center gap-2">
+                  <FiPhone className="w-4 h-4" /> Call
+                </button>
+                <button className="w-9 border border-gray-200 rounded-md flex items-center justify-center text-gray-500 hover:bg-gray-50 transition">
+                  <FiMapPin className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Suresh Raman */}
@@ -681,19 +694,25 @@ function Shipments() {
                   <h3 className="font-semibold text-gray-800 text-md">Suresh Raman</h3>
                 </div>
               </div>
+
               <div className="mt-2 space-y-1">
                 <p className="text-sm flex justify-between"><span className="text-gray-500">Deliveries:</span> <span className="font-medium">38</span></p>
                 <p className="text-sm flex justify-between"><span className="text-gray-500">On-time Rate:</span> <span className="font-medium text-yellow-600">87.5%</span></p>
-                <p className="text-sm flex justify-between"> <span className="text-gray-500">Rating:</span>
-                  <span className="font-medium">
-                    <span className="text-yellow-500">★</span> 4.3
-                  </span></p>
+                <p className="text-sm flex justify-between">
+                  <span className="text-gray-500">Rating:</span>
+                  <span className="font-medium"><span className="text-yellow-500">★</span> 4.3</span>
+                </p>
                 <p className="text-sm flex justify-between"><span className="text-gray-500">Status</span> <span className="font-bold">Delayed</span></p>
               </div>
-              <button className="mt-3 bg-red-600 hover:bg-blue-700 text-white text-sm py-1.5 rounded-md w-[90%] flex items-center px-4">
-                <span>📞 Call</span>
-                <LuTriangleAlert className="w-4 h-4 ml-auto" />
-              </button>
+
+              <div className="mt-3 flex gap-2">
+                <button className="flex-1 bg-red-600 hover:bg-red-700 text-white text-sm py-1.5 rounded-md transition flex items-center justify-center gap-2">
+                  <FiPhone className="w-4 h-4" /> Call
+                </button>
+                <button className="w-9 border border-gray-200 rounded-md flex items-center justify-center text-gray-500 hover:bg-gray-50 transition">
+                  <FiAlertTriangle className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Vikram Joshi */}
@@ -709,18 +728,25 @@ function Shipments() {
                   <h3 className="font-semibold text-gray-800 text-md">Vikram Joshi</h3>
                 </div>
               </div>
+
               <div className="mt-2 space-y-1">
                 <p className="text-sm flex justify-between"><span className="text-gray-500">Deliveries:</span> <span className="font-medium">41</span></p>
                 <p className="text-sm flex justify-between"><span className="text-gray-500">On-time Rate:</span> <span className="font-medium text-green-600">96.1%</span></p>
-                <p className="text-sm flex justify-between"> <span className="text-gray-500">Rating:</span>
-                  <span className="font-medium">
-                    <span className="text-yellow-500">★</span> 4.3
-                  </span></p>
+                <p className="text-sm flex justify-between">
+                  <span className="text-gray-500">Rating:</span>
+                  <span className="font-medium"><span className="text-yellow-500">★</span> 4.7</span>
+                </p>
                 <p className="text-sm flex justify-between"><span className="text-gray-500">Status</span> <span className="font-bold">Available</span></p>
               </div>
-              <button className="mt-3 bg-dark-navy-blue text-white text-sm py-1.5 rounded-md transition w-full">
-                📋 Assign
-              </button>
+
+              <div className="mt-3 flex gap-2">
+                <button className="flex-1 bg-dark-navy-blue hover:bg-blue-700 text-white text-sm py-1.5 rounded-md transition flex items-center justify-center gap-2">
+                  <FiPlus className="w-4 h-4" /> Assign
+                </button>
+                <button className="w-9 border border-gray-200 rounded-md flex items-center justify-center text-gray-500 hover:bg-gray-50 transition">
+                  <FiUser className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
