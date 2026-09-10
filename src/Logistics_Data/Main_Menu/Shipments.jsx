@@ -18,7 +18,8 @@ import {
   FiPhone,
   FiMapPin,
   FiPlus,
-  FiUser
+  FiUser,
+  FiFileText
 } from "react-icons/fi";
 // Icons for Actions column
 import { GrView } from "react-icons/gr";
@@ -608,9 +609,33 @@ function Shipments() {
 
         {/* Driver Performance Dashboard */}
         <div className="bg-white p-4 border border-gray-300 rounded-md shadow-sm">
-          <h1 className="font-bold text-xl text-gray-800 mb-4 tracking-wide">
-            Driver Performance Dashboard
-          </h1>
+          {/* Header Section with Dropdown and Full Report */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
+            <h1 className="font-bold text-xl text-gray-800 tracking-wide">
+              Driver Performance Dashboard
+            </h1>
+            
+            <div className="flex items-center gap-3 w-full sm:w-auto">
+              {/* This Month Dropdown */}
+              <div className="relative flex-1 sm:flex-none">
+                <select className="w-full appearance-none bg-white border border-gray-300 rounded-md pl-3 pr-8 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer">
+                  <option>This Month</option>
+                  <option>Last Month</option>
+                  <option>This Week</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Full Report Button */}
+              <button className="bg-dark-navy-blue hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-md transition flex items-center justify-center gap-2 flex-1 sm:flex-none">
+                <FiFileText className="w-4 h-4" /> Full Report
+              </button>
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Raj Kumar */}
