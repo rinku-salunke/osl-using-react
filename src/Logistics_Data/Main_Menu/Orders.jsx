@@ -442,7 +442,8 @@ function Orders() {
             <table className="w-full table-fixed divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="w-12 px-4 py-3 text-center text-xs font-medium text-gray-500 tracking-wider">Sr.No</th>
+                  {/* Sr.No: Removed left padding */}
+                  <th scope="col" className="w-12 pl-0 pr-2 py-3 text-center text-xs font-medium text-gray-500 tracking-wider">Sr.No</th>
                   <th scope="col" className="w-1/6 px-4 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">
                     <div className="flex items-center gap-1.5">Order ID <RiExpandUpDownFill size={12} /></div>
                   </th>
@@ -470,7 +471,8 @@ function Orders() {
 
                   return (
                     <tr key={order.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-4 whitespace-nowrap text-center text-sm text-gray-500">{index + 1}</td>
+                      {/* Sr.No: Removed left padding */}
+                      <td className="pl-0 pr-2 py-4 whitespace-nowrap text-center text-sm text-gray-500">{index + 1}</td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-900">
                         <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigator.clipboard.writeText(order.id)}>
                           <span>#{order.id}</span>
@@ -528,16 +530,16 @@ function Orders() {
             </table>
           </div>
 
-          <div className="px-4 py-3 border-t border-gray-200 flex items-center justify-between flex-wrap gap-3">
+          <div className="px-4 py-3 border-t border-gray-300 flex items-center justify-between flex-wrap gap-3">
             <div className="text-sm text-gray-500">Showing 1 to 10 of 248 results</div>
             <div className="flex gap-1.5">
-              <button className="px-3 py-1.5 border rounded text-gray-600 text-sm disabled:opacity-50">Previous</button>
-              <button className="px-3 py-1.5 border rounded bg-blue-900 text-white text-sm">1</button>
-              <button className="px-3 py-1.5 border rounded text-gray-600 text-sm">2</button>
-              <button className="px-3 py-1.5 border rounded text-gray-600 text-sm">3</button>
-              <button className="px-3 py-1.5 border rounded text-gray-600 text-sm">...</button>
-              <button className="px-3 py-1.5 border rounded text-gray-600 text-sm">25</button>
-              <button className="px-3 py-1.5 border rounded text-gray-600 text-sm">Next</button>
+              <button className="px-3 py-1.5 border border-gray-300 rounded text-gray-600 text-sm disabled:opacity-50">Previous</button>
+              <button className="px-3 py-1.5 border border-gray-300 rounded bg-blue-900 text-white text-sm">1</button>
+              <button className="px-3 py-1.5 border border-gray-300 rounded text-gray-600 text-sm">2</button>
+              <button className="px-3 py-1.5 border border-gray-300 rounded text-gray-600 text-sm">3</button>
+              <button className="px-3 py-1.5 border border-gray-300 rounded text-gray-600 text-sm">...</button>
+              <button className="px-3 py-1.5 border border-gray-300 rounded text-gray-600 text-sm">25</button>
+              <button className="px-3 py-1.5 border border-gray-300 rounded text-gray-600 text-sm">Next</button>
             </div>
           </div>
         </div>
