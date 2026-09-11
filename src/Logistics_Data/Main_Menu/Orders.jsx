@@ -1019,7 +1019,7 @@ function Orders() {
                 <span className="w-2 h-2 rounded-full bg-green-500"></span>
                 Live Updates
               </span>
-              <button className="text-sm text-dark-navy-blue hover:underline flex items-center gap-1.5 font-medium">
+              <button className="text-sm text-dark-navy-blue  flex items-center gap-1.5 font-medium">
                 <FaMapMarkedAlt size={14} />
                 Full Map
               </button>
