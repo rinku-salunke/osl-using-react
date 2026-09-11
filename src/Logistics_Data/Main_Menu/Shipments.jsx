@@ -141,8 +141,8 @@ function Shipments() {
       {/* Header */}
       <div className="bg-white border-b border-gray-300 flex justify-between items-center px-4 py-3 sticky top-0 z-50">
         <div className="flex flex-col">
-          <h1 className="font-bold text-black text-lg">Vehicle & Gate Pass Management</h1>
-          <span className="text-sm text-gray-600">Manage fleet vehicles, gate passes, and vehicle documentation.</span>
+          <h1 className="font-bold text-black text-lg">Shipments & Delivery Management</h1>
+          <span className="text-sm text-gray-600">track shipments,manage deliveries,and monitor route performance</span>
         </div>
         <div className="flex items-center space-x-3">
           <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-1.5 font-medium cursor-pointer inline-flex gap-1">

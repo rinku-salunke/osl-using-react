@@ -429,7 +429,8 @@ function Orders() {
           <span className="text-sm text-gray-500 mt-1">Manage and track all logistic orders</span>
         </div>
         <div className="flex items-center gap-3 flex-shrink-0">
-          <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-2 text-sm font-medium cursor-pointer hover:bg-gray-50">
+          <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-2 text-sm font-medium cursor-pointer inline-flex items-center gap-2 hover:bg-gray-50">
+            <ImDownload3 size={14} />
             Export
           </span>
           <button
@@ -581,11 +582,10 @@ function Orders() {
               <button
                 onClick={handleResetAdvancedFilters}
                 disabled={!hasActiveAdvancedFilters}
-                className={`flex items-center gap-1.5 text-xs font-medium transition-colors ${
-                  hasActiveAdvancedFilters
-                    ? 'text-red-600 hover:text-red-700 cursor-pointer'
-                    : 'text-gray-300 cursor-not-allowed'
-                }`}
+                className={`flex items-center gap-1.5 text-xs font-medium transition-colors ${hasActiveAdvancedFilters
+                  ? 'text-red-600 hover:text-red-700 cursor-pointer'
+                  : 'text-gray-300 cursor-not-allowed'
+                  }`}
                 title={hasActiveAdvancedFilters ? 'Reset advanced filters' : 'No active filters'}
               >
                 <RiRestartLine size={14} />
@@ -1256,11 +1256,10 @@ function Orders() {
                   <button
                     key={chip.key}
                     onClick={() => setActivityTypeFilter(chip.key)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
-                      activityTypeFilter === chip.key
-                        ? `${chip.color} ring-2 ring-offset-1 ring-blue-300`
-                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                    }`}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${activityTypeFilter === chip.key
+                      ? `${chip.color} ring-2 ring-offset-1 ring-blue-300`
+                      : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                      }`}
                   >
                     {chip.label}
                   </button>
