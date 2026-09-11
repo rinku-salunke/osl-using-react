@@ -1,11 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { MdOutlineClear, MdFormatListBulleted, MdOutlineArrowDropDown } from "react-icons/md";
-import { CiDeliveryTruck } from "react-icons/ci";
 import { IoPersonAddSharp, IoTrendingDownSharp, IoLocation, IoTodaySharp } from "react-icons/io5";
 import { RiAlertFill, RiArrowDropDownLine, RiExpandUpDownFill, RiRestartLine } from "react-icons/ri";
-import { LuChevronRight } from "react-icons/lu";
 import { GrView } from "react-icons/gr";
-import { BsBoxes, BsCheckCircleFill, BsExclamationTriangleFill, BsCircleFill, BsSliders } from "react-icons/bs";
+import { BsBoxes, BsExclamationTriangleFill, BsCircleFill, BsSliders } from "react-icons/bs";
 import { HiOutlineRefresh } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import {
@@ -428,7 +426,7 @@ function Orders() {
           <h1 className="font-bold text-black text-2xl">Order Management</h1>
           <span className="text-sm text-gray-500 mt-1">Manage and track all logistic orders</span>
         </div>
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-3">
           <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-2 text-sm font-medium cursor-pointer inline-flex items-center gap-2 hover:bg-gray-50">
             <ImDownload3 size={14} />
             Export

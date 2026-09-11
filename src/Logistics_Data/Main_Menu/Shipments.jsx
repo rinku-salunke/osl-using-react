@@ -137,15 +137,16 @@ function Shipments() {
   };
 
   return (
-    <div>
+    <div className='fle'>
       {/* Header */}
-      <div className="bg-white border-b border-gray-300 flex justify-between items-center px-4 py-3 sticky top-0 z-50">
+              <header className="sticky top-0 z-50 bg-white border-b border-gray-300 flex justify-between items-center px-6 py-4">
+
         <div className="flex flex-col">
-          <h1 className="font-bold text-black text-lg">Shipments & Delivery Management</h1>
-          <span className="text-sm text-gray-600">track shipments,manage deliveries,and monitor route performance</span>
+          <h1 className="font-bold text-black text-2xl">Shipments & Delivery Management</h1>
+          <span className="text-sm text-gray-500 mt-1">track shipments,manage deliveries,and monitor route</span>
         </div>
-        <div className="flex items-center space-x-3">
-          <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-1.5 font-medium cursor-pointer inline-flex gap-1">
+        <div className="flex items-center gap-3">
+          <span className="text-gray-600 border border-gray-300 rounded-md px-4 py-2 font-medium cursor-pointer inline-flex gap-2">
             <FaRoute size={20} />
             Route Planner
           </span>
@@ -153,9 +154,9 @@ function Shipments() {
             + New Shipments
           </span>
         </div>
-      </div>
+        </header>
 
-      <div className="bg-gray-50 min-h-screen p-4 space-y-4">
+      <div className="bg-gray-50 min-h-screen p-4 space-y-8 px-6 py-8">
 
         {/* Stats Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
