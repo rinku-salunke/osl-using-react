@@ -15,6 +15,7 @@ import {
     PiHashDuotone,
     PiCalendarDuotone,
     PiWarehouseDuotone,
+    PiSquaresFourDuotone,
 } from "react-icons/pi";
 
 // Feather Icons
@@ -42,6 +43,10 @@ import { BsFileEarmarkText, BsClipboardData } from "react-icons/bs";
 function Sidebar() {
     const { isDarkMode } = useTheme();
     const location = useLocation();
+
+    // ⭐ Dashboard is active on both "/" and "/dashboard"
+    const isDashboardActive =
+        location.pathname === "/" || location.pathname === "/dashboard";
 
     // ⭐ Expand/Collapse state for sub-menus
     const [expandedMenus, setExpandedMenus] = useState({
@@ -108,6 +113,19 @@ function Sidebar() {
 
     const iconSize = 16;
 
+    // ⭐ Active/inactive class for Dashboard
+    const dashboardClasses = `
+        ${baseLinkClasses}
+        ${isDashboardActive
+            ? isDarkMode
+                ? 'bg-slate-700 text-white shadow-md'
+                : 'bg-dark-navy-blue text-white shadow-md'
+            : isDarkMode
+                ? 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+        }
+    `;
+
     return (
         <aside
             className={`
@@ -120,6 +138,18 @@ function Sidebar() {
             `}
         >
             <nav className="flex-1 overflow-y-auto sidebar-nav py-4 pl-4 pr-2 space-y-5">
+                {/* ⭐ DASHBOARD (top-level, above Masters) */}
+                <div>
+                    <ul className="space-y-0.5">
+                        <li>
+                            <NavLink to="/" className={dashboardClasses}>
+                                <PiSquaresFourDuotone size={iconSize} className="flex-shrink-0" />
+                                <span className="truncate">Dashboard</span>
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+
                 {/* MASTERS */}
                 <div>
                     <h3 className={headingClasses}>Masters</h3>
@@ -228,7 +258,7 @@ function Sidebar() {
                 <div>
                     <h3 className={headingClasses}>Accounts</h3>
                     <ul className="space-y-0.5">
-                        {/* ⭐ Customer Purchase Order with Sub-Menu */}
+                        {/* Customer Purchase Order */}
                         <li>
                             <button
                                 onClick={() => toggleMenu("customerPO")}
@@ -271,7 +301,7 @@ function Sidebar() {
                             )}
                         </li>
 
-                        {/* ⭐ Invoice with Sub-Menu */}
+                        {/* Invoice */}
                         <li>
                             <button
                                 onClick={() => toggleMenu("invoice")}
@@ -314,7 +344,7 @@ function Sidebar() {
                             )}
                         </li>
 
-                        {/* ⭐ Bills with Sub-Menu */}
+                        {/* Bills */}
                         <li>
                             <button
                                 onClick={() => toggleMenu("bills")}
