@@ -8,8 +8,9 @@
     --color-yellow-amber: #f59e0b;
     --color-light-gray: #f3f4f6;
     --color-white-fresh: #ffffff;
-    --color-halaki-rakhadi:#d1d5db;
-    --color-muted-icons:#6b7280;
+    --color-halaki-rakhadi: #d1d5db;
+    --color-muted-icons: #6b7280;
+    --color-main-bg: #f0f4ff;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
